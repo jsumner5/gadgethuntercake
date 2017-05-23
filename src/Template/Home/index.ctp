@@ -163,7 +163,7 @@
 
                                     <?php
                                     if($item['price'] < ($item['normal_price'] -1 )):
-                                        echo('<tr><td class="">'.'From $'.$item['normal_price'].' to $'.$item['price'].'</td></tr>');
+                                        echo('<tr><td class="">'.'From $<s>'.$item['normal_price'].'</s> to $'.$item['price'].'</td></tr>');
                                     else:
                                        echo('<tr><td class="">$'.$item['price'].'</td></tr>');
                                        // debug($item);

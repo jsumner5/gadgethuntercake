@@ -11,7 +11,10 @@
 
 .item-container{ width:25%; vertical-align: middle; position: relative;}
 .item-container:hover .priceBar { visibility:visible; }
-.priceBar > tbody > tr >td{color:white;}
+.priceBar > tbody > tr >td{
+	color:white;
+	text-align: center;
+}
 
 .button{
 	display: block;
