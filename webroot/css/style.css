@@ -42,10 +42,29 @@
 .side-block{
 	background-color: #4d4d4d;
 	/*height: 200px;*/
-	width: 100%;
+	width: 90%;
 	padding: .5em;
 	margin-bottom: 1em;
 
+}
+/* for the icons at the bottom of the page */
+.next{
+	width: auto;
+	height:auto !important;
+}
+.prev{
+	width: auto;
+	height:auto !important;
+}
+ul.pagination li.active a{
+	background-color: #4d4d4d !important;
+}
+ul.pagination li{
+	width:auto !important;
+	vertical-align: middle;
+}
+p{
+	text-align: center !important;
 }
 
 

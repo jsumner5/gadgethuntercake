@@ -102,7 +102,7 @@
 
             <div class="side-block">
                 <a target="_blank" href="dfhjdhttps://www.amazon.com/gp/student/signup/info/?ref_=assoc_tag_ph_1402130811706&_encoding=UTF8&camp=1789&creative=9325&linkCode=pf4&tag=gadgethunter2-20&linkId=22006f1de95e8e175eee975730108172">
-                    <img src="webroot/img/newegg.jpg"/>
+                    <img src="webroot/img/egg.png"/>
                 </a>
             </div>
         </li>
@@ -115,30 +115,23 @@
     <section>
         <div class="container">
 
-
-
-
-
-
-            <!--    <button class="button center" style="margin-top: 2em;" onclick="document.getElementById('id01').style.display='block'">Exclusive Deals<br><i class="fa fa-envelope-o"></i></button>-->
-
             <!-- deal alert module popup -->
-            <div id="id01" class="modal" style="display: none;">
-                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+            <div id="newsLetterModal" class="modal" style="display: none;">
+                <span onclick="document.getElementById('newsLetterModal').style.display='none'" class="close" title="Close Modal">×</span>
                 <form class="modal-content animate" action="index.php" method="POST">
                     <div class="container">
                         <h2>Get up to 73% off items featured in our weekly deals letter</h2>
-                        <label><b>Name</b></label>
-                        <input type="text" placeholder="Your Name" name="name" required>
+                        <label ><b>Name</b></label>
+                        <input type="text" style="max-width:200px; margin: auto" placeholder="Your Name" name="name" required>
 
                         <label><b>Email</b></label>
-                        <input type="text" placeholder="Your Email" name="email" required>
+                        <input type="text" style="max-width:200px; margin: auto" placeholder="Your Email" name="email" required>
                         <br><br>
 
                         <p>By joining our deals list you agree to our <a href="privacy/privacypolicy.htm">Terms & Privacy</a>.</p>
 
                         <div class="clearfix">
-                            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">I don't like deals</button>
+                            <button type="button" onclick="document.getElementById('newsLetterModal').style.display='none'" class="cancelbtn">I don't like deals</button>
                             <button type="submit" class="signupbtn">Count me in!</button>
                         </div>
                     </div>
@@ -162,14 +155,24 @@
                                 <table class="priceBar">
 
                                     <?php
+                                    $itemC = new \App\Controller\ItemsController();
+                                    #item title
+                                    echo('<tr><td class="">'.$itemC->trimTitle($item['title']).'</td></tr>');
+
+                                    # price options
                                     if($item['price'] < ($item['normal_price'] -1 )):
                                         echo('<tr><td class="">'.'From $<s>'.$item['normal_price'].'</s> to $'.$item['price'].'</td></tr>');
                                     else:
                                        echo('<tr><td class="">$'.$item['price'].'</td></tr>');
-                                       // debug($item);
-
                                     endif ?>
-                                    <tr><td class="">CODE:</td></tr>
+
+                                    <?php
+                                    #discount code
+                                    if ($item['code'] != null):
+                                    echo ('<tr><td class="">CODE:</td></tr>');
+                                    endif;
+                                    ?>
+
 
                                 </table>
                             </td>
@@ -189,13 +192,12 @@
 
                 <div class="paginator">
                     <ul class="pagination">
-                        <?= $this->Paginator->first('<< ' . __('first')) ?>
-                        <?= $this->Paginator->prev('< ' . __('previous')) ?>
+                        <?= $this->Paginator->prev('<i class="fa fa-arrow-left fa-2x" style="color:black;"> </i>', ['escape' => false]) ?>
                         <?= $this->Paginator->numbers() ?>
-                        <?= $this->Paginator->next(__('next') . ' >') ?>
-                        <?= $this->Paginator->last(__('last') . ' >>') ?>
+                        <?= $this->Paginator->next('<i class="fa fa-arrow-right fa-2x" style="color:black;"> </i>', ['escape' => false]) ?>
+
                     </ul>
-                    <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+                    <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} items(s) of {{count}}')]) ?></p>
                 </div>
             <!-- table wrapper-->
         </div>

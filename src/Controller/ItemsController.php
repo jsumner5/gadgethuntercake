@@ -110,6 +110,15 @@ class ItemsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+    function trimTitle($title){
+        if(strlen($title) > 40) {
+            $result = substr($title, 0, strpos($title, ' ', 40));
+        }
+        else{
+            $result = $title;
+        }
+        return $result;
+    }
 
 
 

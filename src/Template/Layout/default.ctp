@@ -29,11 +29,29 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
-    <?= $this->Html->css(['style.css','/font-awesome/css/font-awesome.min.css']) ?>
+    <?= $this->Html->css(['style.css','/font-awesome/css/font-awesome.min.css', 'newsLetter.css']) ?>
+    <?= $this->Html->script('https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js') ?>
+
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            });
+
+
+        function displayModal(){
+            debugger;
+            var newsLetter = $('#newsLetterModal');
+            newsLetter.css('display','block');
+        }
+
+
+    </script>
 </head>
 <style>
     div > .menu-container > li{
@@ -65,10 +83,17 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <nav class="top-bar expanded" data-topbar role="navigation" style="height: 4.5em; background-color:#F4F4F4;">
 
         <div class="top-bar-section">
-            <img src="webroot/img/gh-logo.jpg" class="logo">
+            <?= $this->Html->image(
+                    'gh-logo.jpg',
+                    [       'alt' => 'Gadget Hunter',
+                            'url' => ['controller' => 'Home', 'action' => 'index'],
+                            'class' => 'logo'
+                    ]
+
+            ) ?>
             <ul class="right menu-container">
-                <li><a target="_blank" href="#" class="text-center " style="line-height: 1.5em;padding-top: 1em;"><i class="fa fa-envelope-o fa-3x"></i></a></li>
-                <li><a target="_blank"  class="text-center med-text" style="line-height: 1.5em;padding-top: 1.2em;" onclick=""> Blog</a></li>
+                <li><a target="_blank" onclick="displayModal()" class="text-center " style="line-height: 1.5em;padding-top: 1em;"><i class="fa fa-envelope-o fa-3x"></i></a target="_blank" class="text-center " style="line-height: 1.5em;padding-top: 1em;"></li>
+                <li><a target="_blank" href="#" class="text-center med-text" style="line-height: 1.5em;padding-top: 1.2em;" onclick=""> Blog</a></li>
                 <li><a target="_blank" href="#" class="text-center med-text" style="line-height: 1.5em;padding-top: 1.2em;">Contests</a></li>
 
             </ul>
