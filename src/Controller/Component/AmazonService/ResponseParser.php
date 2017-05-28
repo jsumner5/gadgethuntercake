@@ -33,26 +33,30 @@ class ResponseParser{
     }
 
     function getPrice($xml_object){
-        $price = $xml_object->Items[0]->Item->Offers->Offer->OfferListing->SalePrice->FormattedPrice;
+        $price = $xml_object->Items[0]->Item->Offers->Offer->OfferListing->SalePrice->Amount;
 
         if($price == ''){
-            $price = $xml_object->Items[0]->Item->Offers->Offer->OfferListing->Price->FormattedPrice;
+            $price = $xml_object->Items[0]->Item->Offers->Offer->OfferListing->Price->Amount;
         }
 
         if($price == ''){
-            $price = $xml_object->Items[0]->Item->ItemAttributes->ListPrice->FormattedPrice;
+            $price = $xml_object->Items[0]->Item->ItemAttributes->ListPrice->Amount;
         }
 
         if($price == ''){
-            $price = $xml_object->Items[0]->Item->OfferSummary->LowestNewPrice->FormattedPrice;
+            $price = $xml_object->Items[0]->Item->OfferSummary->LowestNewPrice->Amount;
         }
         if($price == ''){
             $price ='';
         }
+        #format price as a decimal
+        $price = number_format(($price/100),2);
         return $price;
     }
     function getNormalPrice($xml_object){
-        $price = $xml_object->Items[0]->Item->ItemAttributes->ListPrice->FormattedPrice;
+        $price = $xml_object->Items[0]->Item->ItemAttributes->ListPrice->Amount;
+        # format price as a decimal
+        $price = number_format(($price/100),2);
         return $price;
     }
 

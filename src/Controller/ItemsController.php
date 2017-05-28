@@ -4,6 +4,8 @@ namespace App\Controller;
 use App\Controller\AppController;
 use App\Model\Entity\Item;
 use Cake\ORM\TableRegistry;
+use Cake\I18n\Time;
+
 
 /**
  * Items Controller
@@ -110,6 +112,7 @@ class ItemsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+    #trim item title to a shorter length
     function trimTitle($title){
         if(strlen($title) > 40) {
             $result = substr($title, 0, strpos($title, ' ', 40));
@@ -119,6 +122,59 @@ class ItemsController extends AppController
         }
         return $result;
     }
+
+    function updateItems(){
+        include_once 'Component/AmazonService/AmazonService.php';
+        $this->service = new \AmazonService("gadgethunter2-20", "AKIAJO4D6JCASSJUQULA", "IyV+9o1NP7KtE8Ze+tzDCexwYdCSEY5Sa7U3trT9");
+
+        // Get the current date
+        $time = Time::now()->setTimezone('America/New_York')->format('Y-m-d');
+
+        $query = $this->Items->find('all')
+            ->where(['Items.date_price_updated !=' => $time])
+            ->limit(20);
+
+
+        // Calling all() will execute the query
+        // and return the result set.
+                $results = $query->all();
+
+        // Once we have a result set we can get all the rows
+                $items = $results->toArray();
+
+        // Converting the query to an array will execute it.
+                $items = $query->toArray();
+                echo 'items found: '.  count($items).'<br>';
+                $i=1;
+
+
+
+        echo '<br>'.$time.'<br>';
+
+
+                foreach( $items as $item){
+                    sleep(1);
+                    $i ++;
+                    $xml_item = $this->service->getXmlObjectById($item['asin']);
+                    # set item price and date price updated
+                    $item->price = $this->service->getPrice($xml_item);
+                    $item->date_price_updated = $time;
+                    $item->normal_price = $this->service->getNormalPrice($xml_item);
+                    $item->list_price = $item->price;
+
+                    if ($this->Items->save($item)) {
+                        echo $item['asin'] . 'updated <br>';
+                    }else{
+                        echo 'there was a problem saving item';
+                    }
+                    if($i > 20){
+                        break;
+                    }
+                   // debug($item);
+                }
+
+    }
+
 
 
 
