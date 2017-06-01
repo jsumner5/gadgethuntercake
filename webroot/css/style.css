@@ -2,16 +2,24 @@
 	min-height: 3.5em;
 	border-radius: 1.5em;
 	background-color: #131313;
+	margin: auto;
 	opacity: .8;
 	bottom: 0;
 	z-index: 1;
 	position: absolute;
 	visibility: hidden;
+	/*There is a problem this is a hot fix*/
+	/*margin-left:20%;*/
+	width: 95%;
 }
 
-.item-container{ width:25%; vertical-align: middle; position: relative;}
+.item-container{ width:25%; vertical-align: middle; position: relative; text-align: center;}
 .item-container:hover .priceBar { visibility:visible; }
-.priceBar > tbody > tr >td{color:white;}
+.priceBar > tbody > tr >td{
+	color:white;
+	text-align: center;
+	word-break: keep-all;
+}
 
 .button{
 	display: block;
@@ -39,10 +47,29 @@
 .side-block{
 	background-color: #4d4d4d;
 	/*height: 200px;*/
-	width: 100%;
+	width: 90%;
 	padding: .5em;
 	margin-bottom: 1em;
 
+}
+/* for the icons at the bottom of the page */
+.next{
+	width: auto;
+	height:auto !important;
+}
+.prev{
+	width: auto;
+	height:auto !important;
+}
+ul.pagination li.active a{
+	background-color: #4d4d4d !important;
+}
+ul.pagination li{
+	width:auto !important;
+	vertical-align: middle;
+}
+p{
+	text-align: center !important;
 }
 
 

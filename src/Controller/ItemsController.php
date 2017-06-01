@@ -4,6 +4,8 @@ namespace App\Controller;
 use App\Controller\AppController;
 use App\Model\Entity\Item;
 use Cake\ORM\TableRegistry;
+use Cake\I18n\Time;
+
 
 /**
  * Items Controller
@@ -110,6 +112,75 @@ class ItemsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+    #trim item title to a shorter length
+    function trimTitle($title){
+        if(strlen($title) > 40) {
+            $result = substr($title, 0, strpos($title, ' ', 40));
+        }
+        else{
+            $result = $title;
+        }
+        return $result;
+    }
+
+    function updateItems(){
+        include_once 'Component/AmazonService/AmazonService.php';
+        $this->service = new \AmazonService("gadgethunter2-20", "AKIAJO4D6JCASSJUQULA", "IyV+9o1NP7KtE8Ze+tzDCexwYdCSEY5Sa7U3trT9");
+
+        // Get the current date
+        $time = Time::now()->setTimezone('America/New_York')->format('Y-m-d');
+
+        # update amazon items
+        $amazonItemsQuery = $this->Items->find('all')
+            ->where(['Items.date_price_updated' => $time, 'Items.affiliateID =' => 1])
+            ->limit(20);
+
+        #Converting the query to an array will execute it.
+        $items = $amazonItemsQuery->toArray();
+        echo 'items found: '.  count($items).'<br>';
+        foreach( $items as $item){
+//            sleep(1);
+            $xml_item = $this->service->getXmlObjectById($item['asin']);
+            # set item prices and date price updated
+            $item->price = $this->service->getPrice($xml_item);
+            $item->date_price_updated = $time;
+            $item->normal_price = $this->service->getNormalPrice($xml_item);
+            $item->list_price = $item->price;
+
+            if ($this->Items->save($item)) {
+                echo $item['asin'] . 'updated <br>';
+            }else{
+                echo 'there was a problem saving item'.$item['asin'];
+            }
+        }
+
+        #Update newegg items
+        $neweggItemsQuery = $this->Items->find('all')
+            ->where(['Items.date_price_updated !=' => $time, 'Items.affiliateID =' => 2])
+            ->limit(20);
+
+        $items = $neweggItemsQuery->toArray();
+
+        foreach ($items as $items){
+
+            sleep(1);
+            $xml_item = $this->service->getXmlObjectById($item['asin']);
+            # set item prices and date price updated
+            $item->price = $this->service->getPrice($xml_item);
+            $item->date_price_updated = $time;
+            $item->normal_price = $this->service->getNormalPrice($xml_item);
+            $item->list_price = $item->price;
+
+            if ($this->Items->save($item)) {
+                echo $item['asin'] . 'updated <br>';
+            }else{
+                echo 'there was a problem saving item'.$item['asin'];
+            }
+
+        }
+
+    }
+
 
 
 
