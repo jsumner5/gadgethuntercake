@@ -130,48 +130,54 @@ class ItemsController extends AppController
         // Get the current date
         $time = Time::now()->setTimezone('America/New_York')->format('Y-m-d');
 
-        $query = $this->Items->find('all')
-            ->where(['Items.date_price_updated !=' => $time])
+        # update amazon items
+        $amazonItemsQuery = $this->Items->find('all')
+            ->where(['Items.date_price_updated' => $time, 'Items.affiliateID =' => 1])
             ->limit(20);
 
+        #Converting the query to an array will execute it.
+        $items = $amazonItemsQuery->toArray();
+        echo 'items found: '.  count($items).'<br>';
+        foreach( $items as $item){
+//            sleep(1);
+            $xml_item = $this->service->getXmlObjectById($item['asin']);
+            # set item prices and date price updated
+            $item->price = $this->service->getPrice($xml_item);
+            $item->date_price_updated = $time;
+            $item->normal_price = $this->service->getNormalPrice($xml_item);
+            $item->list_price = $item->price;
 
-        // Calling all() will execute the query
-        // and return the result set.
-                $results = $query->all();
+            if ($this->Items->save($item)) {
+                echo $item['asin'] . 'updated <br>';
+            }else{
+                echo 'there was a problem saving item'.$item['asin'];
+            }
+        }
 
-        // Once we have a result set we can get all the rows
-                $items = $results->toArray();
+        #Update newegg items
+        $neweggItemsQuery = $this->Items->find('all')
+            ->where(['Items.date_price_updated !=' => $time, 'Items.affiliateID =' => 2])
+            ->limit(20);
 
-        // Converting the query to an array will execute it.
-                $items = $query->toArray();
-                echo 'items found: '.  count($items).'<br>';
-                $i=1;
+        $items = $neweggItemsQuery->toArray();
 
+        foreach ($items as $items){
 
+            sleep(1);
+            $xml_item = $this->service->getXmlObjectById($item['asin']);
+            # set item prices and date price updated
+            $item->price = $this->service->getPrice($xml_item);
+            $item->date_price_updated = $time;
+            $item->normal_price = $this->service->getNormalPrice($xml_item);
+            $item->list_price = $item->price;
 
-        echo '<br>'.$time.'<br>';
+            if ($this->Items->save($item)) {
+                echo $item['asin'] . 'updated <br>';
+            }else{
+                echo 'there was a problem saving item'.$item['asin'];
+            }
 
-
-                foreach( $items as $item){
-                    sleep(1);
-                    $i ++;
-                    $xml_item = $this->service->getXmlObjectById($item['asin']);
-                    # set item price and date price updated
-                    $item->price = $this->service->getPrice($xml_item);
-                    $item->date_price_updated = $time;
-                    $item->normal_price = $this->service->getNormalPrice($xml_item);
-                    $item->list_price = $item->price;
-
-                    if ($this->Items->save($item)) {
-                        echo $item['asin'] . 'updated <br>';
-                    }else{
-                        echo 'there was a problem saving item';
-                    }
-                    if($i > 20){
-                        break;
-                    }
-                   // debug($item);
-                }
+        }
 
     }
 

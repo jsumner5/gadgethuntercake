@@ -157,19 +157,19 @@
                                     <?php
                                     $itemC = new \App\Controller\ItemsController();
                                     #item title
-                                    echo('<tr><td class="">'.$itemC->trimTitle($item['title']).'</td></tr>');
+                                    echo('<tr style="border-bottom: none;"><td class="">'.$itemC->trimTitle($item['title']).'</td></tr>');
 
                                     # price options
                                     if($item['price'] < ($item['normal_price'] -1 )):
-                                        echo('<tr><td class="">'.'From $<s>'.$item['normal_price'].'</s> to $'.$item['price'].'</td></tr>');
+                                        echo('<tr style="border-bottom: none;"><td class="">'.'From $<s>'.$item['normal_price'].'</s> to $'.$item['price'].'</td></tr>');
                                     else:
-                                       echo('<tr><td class="">$'.$item['price'].'</td></tr>');
+                                       echo('<tr style="border-bottom: none;"><td class="">$'.$item['price'].'</td></tr>');
                                     endif ?>
 
                                     <?php
                                     #discount code
                                     if ($item['code'] != null):
-                                    echo ('<tr><td class="">CODE:</td></tr>');
+                                    echo ('<tr style="border-bottom: none;"><td class="">CODE:</td></tr>');
                                     endif;
                                     ?>
 
@@ -183,7 +183,6 @@
                     if(($itemCount % 4 == 0 && $itemCount !== 0)){
                         echo '</tr>';
                     }
-
                     endforeach;
                     ?>
 

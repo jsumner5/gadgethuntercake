@@ -7,8 +7,10 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
+        <li><?= $this->Html->link(__('Return to Dash'), ['controller' => 'pages', 'action' => 'display', 'dash']) ?></li>
         <li><?= $this->Html->link(__('List Items'), ['controller' => 'items','action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Amazon Item'), ['action' => 'amazon_item']) ?></li>
+        <li class="heading"><?= __('Actions') ?></li>
     </ul>
 </nav>
 <div class="items index large-9 medium-8 columns content">

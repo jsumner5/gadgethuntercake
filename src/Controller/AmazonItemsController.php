@@ -36,16 +36,18 @@ class AmazonItemsController extends AppController
             $item->item_url = $service->getSignedUrl($xml_item);
             $item->large_img_url = $service->getLargeImgUrl($xml_item);
             $item->small_img_url = $service->getSmallImgUrl($xml_item);
-            $item->publisher = $this->Auth->user('id');
+            $item->publisherID = $this->Auth->user('id');
+            $item->affiliateID = 1;
 
 
             if ($itemsC->Items->save($item)) {
                 // want to eventaully make sure Amazon service returns valid item
-                $this->Flash->success('item has been saved');
+                $this->Flash->success('Item Saved');
                 return $this->redirect(['controller' => 'items','action' => 'view', $item->id]);
             }
             $this->Flash->error('Error saving item');
         }
+
         $this->set(compact('item'));
         $this->set('_serialize', ['item']);
 

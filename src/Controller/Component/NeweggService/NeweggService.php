@@ -59,13 +59,17 @@
                  'sale-price' => $prod[16],
                  'sku' => $prod[17],
                  'upc' => $prod[18]
-
              ];
 
             array_push($products, $product);
          }
 
          return $products;
+    }
+
+
+    function getItem($itemID){
+         
     }
 
     // returns just products
