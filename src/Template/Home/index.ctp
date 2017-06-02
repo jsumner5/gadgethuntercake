@@ -1,87 +1,6 @@
+<?php $this->Html->meta('keywords', 'keywords, are, sweet', ['block' => true]); ?>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<style>
-    .button{
-        display: block;
-        border-radius: 3px;
-    }
-    .center{
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .header{
-        height: 4.5em;
-        background-color: #2a6496;
-    }
-    .text-center{
-        text-align: center;
-    }
-    .text-black{
-        color: black !important;
-    }
-    /*slider*/
-    .slider{
-        height: 250px;
-        width: 500px;
-        background-color: #1C37F9;
-    }
-
-    /*side bar*/
-    .side-block{
-        background-color: #4d4d4d;
-        /*height: 200px;*/
-        width: 100%;
-        padding: .5em;
-        margin-bottom: 1em;
-    }
-    .side-block > a {
-        padding: 0 !important;
-        /*width: 100%;*/
-        height: 100%;
-    }
-    .side-block > a > img{
-        width: 100%;
-        /*height: 100%;*/
-    }
-    .menu-container > li > a{
-        background-color: #1C37F9 !important;
-        padding-left: 0 !important;
-    }
-    .menu-container > li > a:hover{
-        background-color: #324BF7 !important;
-    }
-
-
-
-    @media only screen and (max-width: 700px) {
-        #actions-sidebar{
-            display:none;
-        }
-        #item_table td{
-            display:block !important;
-            width:100% !important;
-        }
-        .top-bar{
-            /*overflow: visible;*/
-            height: auto !important;
-        }
-        .top-bar-section ul {
-            display:inline-flex !important;
-            margin-right: 0 !important;
-            width:100% !important;
-        }
-        div > ul > li {
-            width: 33.33% !important;
-
-        }
-    }
-
-
-
-
-</style>
-
-
 
 
 
@@ -117,7 +36,9 @@
 
             <!-- deal alert module popup -->
             <div id="newsLetterModal" class="modal" style="display: none;">
-                <span onclick="document.getElementById('newsLetterModal').style.display='none'" class="close" title="Close Modal">×</span>
+                <span onclick="document.getElementById('newsLetterModal').style.display='none'" class="close" title="Close Deals Letter">
+                    <i class="fa fa-times-circle fa-2x close" aria-hidden="true"></i>
+                </span>
                 <form class="modal-content animate" action="index.php" method="POST">
                     <div class="container">
                         <h2>Get up to 73% off items featured in our weekly deals letter</h2>
