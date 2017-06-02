@@ -1,3 +1,23 @@
+.header{
+	height: 4.5em;
+	background-color: #2a6496;
+}
+.text-center{
+	text-align: center;
+}
+.text-black{
+	color: black !important;
+}
+.button{
+	display: block;
+	border-radius: 3px;
+}
+.center{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* item Price bar */
 .priceBar{
 	min-height: 3.5em;
 	border-radius: 1.5em;
@@ -13,29 +33,21 @@
 	width: 95%;
 }
 
-.item-container{ width:25%; vertical-align: middle; position: relative; text-align: center;}
-.item-container:hover .priceBar { visibility:visible; }
+.item-container{
+	width:25%;
+	vertical-align: middle;
+	position: relative;
+	text-align: center;
+}
+.item-container:hover .priceBar {
+	visibility:visible;
+}
 .priceBar > tbody > tr >td{
 	color:white;
 	text-align: center;
 	word-break: keep-all;
 }
 
-.button{
-	display: block;
-	border-radius: 3px;
-}
-.center{
-	margin-left: auto;
-	margin-right: auto;
-}
-.header{
-	height: 4.5em;
-	background-color: #2a6496;
-}
-.text-center{
-	text-align: center;
-}
 /*slider*/
 .slider{
 	height: 250px;
@@ -52,7 +64,7 @@
 	margin-bottom: 1em;
 
 }
-/* for the icons at the bottom of the page */
+/* for the navigation icons at the bottom of the page */
 .next{
 	width: auto;
 	height:auto !important;
@@ -70,6 +82,67 @@ ul.pagination li{
 }
 p{
 	text-align: center !important;
+}
+
+
+/*slider*/
+.slider{
+	height: 250px;
+	width: 500px;
+	background-color: #1C37F9;
+}
+
+/*side bar*/
+.side-block{
+	background-color: #4d4d4d;
+	/*height: 200px;*/
+	width: 100%;
+	padding: .5em;
+	margin-bottom: 1em;
+}
+.side-block > a {
+	padding: 0 !important;
+	/*width: 100%;*/
+	height: 100%;
+}
+.side-block > a > img{
+	width: 100%;
+	/*height: 100%;*/
+}
+.menu-container > li > a{
+	background-color: #1C37F9 !important;
+	padding-left: 0 !important;
+}
+.menu-container > li > a:hover{
+	background-color: #324BF7 !important;
+}
+
+
+
+@media only screen and (max-width: 700px) {
+	#actions-sidebar{
+		display:none;
+	}
+	.priceBar{
+		visibility: visible;
+	}
+	#item_table td{
+		display:block !important;
+		width:100% !important;
+	}
+	.top-bar{
+		/*overflow: visible;*/
+		height: auto !important;
+	}
+	.top-bar-section ul {
+		display:inline-flex !important;
+		margin-right: 0 !important;
+		width:100% !important;
+	}
+	div > ul > li {
+		width: 33.33% !important;
+
+	}
 }
 
 

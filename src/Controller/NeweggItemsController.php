@@ -108,7 +108,7 @@ class NeweggItemsController extends AppController
                 'large_img_url' => $data['image-url'],
                 'small_img_url' => $data['image-url'],
                 'medium_img_url' => $data['image-url'],
-                'publisher' => $this->Auth->user('id'),
+                'publisherID' => $this->Auth->user('id'),
             ];
             $item = $itemsC->Items->patchEntity($item, $itemData);
 
@@ -123,6 +123,7 @@ class NeweggItemsController extends AppController
 
             $this->set('item', $item);
             $this->set('_serialize', ['item']);
+
 
 
         }

@@ -1,7 +1,7 @@
 <?php
 /**
-  * @var \App\View\AppView $this
-  */
+ * @var \App\View\AppView $this
+ */
 ?>
 <title>Dash.ctp</title>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
@@ -17,7 +17,7 @@
         <!--Load the AJAX API-->
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<!--         load this script into some file-->
+        <!--         load this script into some file-->
         <script type="text/javascript">
 
             // Load the Visualization API and the piechart package.
@@ -28,19 +28,18 @@
 
             function drawChart() {
 
-             var  pieChart =   {
+                var  pieChart =   {
                     "cols": [
-                    {"id":"","label":"Topping","pattern":"","type":"string"},
-                    {"id":"","label":"Slices","pattern":"","type":"number"}
-                ],
+                        {"id":"","label":"Topping","pattern":"","type":"string"},
+                        {"id":"","label":"Slices","pattern":"","type":"number"}
+                    ],
                     "rows": [
                         <?php foreach ($this->viewVars['users'] as $user){
-                            // change 3 to the number of posts
-                            echo ('{"c":[{"v":"'.trim($user['name']).'","f":null},{"v":'.trim($user['item_post_count']).',"f":null}]},');
-
-                        }
+                        // change 3 to the number of posts
+                        echo ('{"c":[{"v":"'. trim($user['name']).'","f":null},{"v":'.trim($user['item_post_count']).',"f":null}]},');
+                    }
                         ?>
-                ]
+                    ]
                 }
 
                 // Create our data table out of JSON data loaded from server.
@@ -57,12 +56,12 @@
     <!--Div that will hold the pie chart-->
     <table>
         <thead>
-            <th> Item Posts By User</th>
-            <th> Visitor Metrics</th>
+        <th> Item Posts By User</th>
+        <th> Visitor Metrics</th>
         </thead>
         <tbody>
-            <tr><td id="chart_items_user"></td></tr>
-            <tr><td id="chart_visitors"></td></tr>
+        <tr><td id="chart_items_user"></td></tr>
+        <tr><td id="chart_visitors"></td></tr>
         </tbody>
 
     </table>

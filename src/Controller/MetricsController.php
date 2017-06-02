@@ -36,29 +36,24 @@ class MetricsController extends AppController
         foreach ($query as $user) {
             //debug($user->title);
         }
-        //$this->set('_serialize', ['users']);
 
 
-        $this->getItemsByUser();
+        $this->setUserPostCount();
     }
 
-    function getItemsByUser(){
+    function setUserPostCount(){
         $options = [
             'order' => [
                 'id' => 'desc'
             ]
         ];
         foreach ($this->viewVars['users'] as $user) {
-            $user['item_post_count'] = 0;
-            foreach ($this->viewVars['items'] as $item){
+            $itemC = new ItemsController();
+            $query = $itemC->Items->find('all')
+                -> where(['Items.publisherID' => $user['id']]);
+            $user['item_post_count'] = $query->count();
 
-                if($item['publisher'] == $user['id']){
-                    $user['item_post_count'] ++;
-                }
-            }
         }
-
-
 
 
     }
