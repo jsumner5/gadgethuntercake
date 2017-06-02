@@ -85,8 +85,8 @@ class ItemsTable extends Table
 
 
         $validator
-            ->requirePresence('publisher', 'create')
-            ->notEmpty('publisher');
+            ->requirePresence('publisherID', 'create')
+            ->notEmpty('publisherID');
 
         return $validator;
     }

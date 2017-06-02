@@ -74,8 +74,11 @@
 
                             <td class="item-container"><?= $this->Html->image(
                                     $item['large_img_url'],
-                                    ['alt' => $item['title'],
-                                    'url' => $item['item_url']]
+                                    [
+                                        'target' => '_blank',
+                                        'url' => $item['item_url'],
+                                        'alt' => $item['title']
+                                    ]
                                 )?>
                                 <table class="priceBar">
 
