@@ -80,11 +80,11 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     }
 </style>
 <body>
-    <nav class="top-bar expanded" data-topbar role="navigation" style="height: 4.5em; background-color:#F4F4F4;">
+    <nav class="top-bar expanded" data-topbar role="navigation" style="height: 4.5em; background-color:white;">
 
         <div class="top-bar-section">
             <?= $this->Html->image(
-                    'gh-logo.jpg',
+                    'gadgethunterlogo.jpg',
                     [       'alt' => 'Gadget Hunter',
                             'url' => ['controller' => 'Home', 'action' => 'index'],
                             'class' => 'logo'

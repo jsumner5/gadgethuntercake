@@ -127,13 +127,14 @@ class ItemsController extends AppController
         include_once 'Component/AmazonService/AmazonService.php';
         $this->service = new \AmazonService("gadgethunter2-20", "AKIAJO4D6JCASSJUQULA", "IyV+9o1NP7KtE8Ze+tzDCexwYdCSEY5Sa7U3trT9");
 
-        // Get the current date
+        # Get the current date
         $time = Time::now()->setTimezone('America/New_York')->format('Y-m-d');
 
         # update amazon items
         $amazonItemsQuery = $this->Items->find('all')
-            ->where(['Items.date_price_updated' => $time, 'Items.affiliateID =' => 1])
-            ->limit(20);
+            ->where(['Items.date_price_updated !=' => $time, 'Items.affiliateID =' => 1])
+            ->limit(20)
+            ->order(['id' => 'DESC']);
 
         #Converting the query to an array will execute it.
         $items = $amazonItemsQuery->toArray();
