@@ -87,13 +87,13 @@
 
 <title>Gadget Hunter.co</title>
 
-
+<!-- Side Bar -->
 <nav class="large-3 medium-4 columns" id="actions-sidebar" style="float: right;">
     <ul class="side-nav">
         <li class="heading text-center text-black">Our Affiliates</li>
         <li>
             <div class="side-block">
-                <a target="_blank" href="dfhjdhttps://www.amazon.com/gp/student/signup/info/?ref_=assoc_tag_ph_1402130811706&_encoding=UTF8&camp=1789&creative=9325&linkCode=pf4&tag=gadgethunter2-20&linkId=22006f1de95e8e175eee975730108172">
+                <a target="_blank" href="https://www.amazon.com/gp/student/signup/info/?ref_=assoc_tag_ph_1402130811706&_encoding=UTF8&camp=1789&creative=9325&linkCode=pf4&tag=gadgethunter2-20&linkId=22006f1de95e8e175eee975730108172">
                     <img src="webroot/img/amazonlogo.png"/>
                 </a>
             </div>
@@ -101,7 +101,7 @@
         <li>
 
             <div class="side-block">
-                <a target="_blank" href="dfhjdhttps://www.amazon.com/gp/student/signup/info/?ref_=assoc_tag_ph_1402130811706&_encoding=UTF8&camp=1789&creative=9325&linkCode=pf4&tag=gadgethunter2-20&linkId=22006f1de95e8e175eee975730108172">
+                <a href="http://www.jdoqocy.com/click-8307307-11495095" target="_blank">
                     <img src="webroot/img/egg.png"/>
                 </a>
             </div>
@@ -151,7 +151,11 @@
 
                     ?>
 
-                            <td class="item-container"><?= $this->Html->image($item['large_img_url'])?>
+                            <td class="item-container"><?= $this->Html->image(
+                                    $item['large_img_url'],
+                                    ['alt' => $item['title'],
+                                    'url' => $item['item_url']]
+                                )?>
                                 <table class="priceBar">
 
                                     <?php
