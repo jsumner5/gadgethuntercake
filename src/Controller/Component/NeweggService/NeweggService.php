@@ -68,9 +68,50 @@
     }
 
 
-    function getItem($itemID){
-         
-    }
+     function get_item($advertiserSku){
+         $this->options['advertiser-sku'] = $advertiserSku;
+         $ch = curl_init();
+
+         curl_setopt($ch, CURLOPT_URL, "https://product-search.api.cj.com/v2/product-search?website-id=" . $this->options['website-id'] . "&advertiser-ids=" . $this->options['advertiser-ids'] . "&advertiser-sku=" . $this->options['advertiser-sku']);
+         curl_setopt($ch, CURLOPT_HEADER, true);
+         curl_setopt($ch, CURLOPT_HTTPGET, true);
+         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+         curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/xml", "authorization:".$this->options['authorization']));
+
+         // receive server response ...
+         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+         $server_output = curl_exec($ch);
+         curl_close($ch);
+         $product = $this->parseResponse($server_output);
+
+         $item = new SimpleXMLElement($product);
+
+             $productItem = [
+                 'ad-id' => $prod[0],
+                 'advertiser-id' => $prod[1],
+                 'advertiser-name' => $prod[2],
+                 'advertiser-category' => $prod[3],
+                 'buy-url' => $prod[4],
+                 'catalog-id' => $prod[5],
+                 'currency' => $prod[6],
+                 'description' => $prod[7],
+                 'image-url' => $prod[8],
+                 'in-stock' => $prod[9],
+                 'isbn' => null,
+                 'manufacturer-name' => $prod[11],
+                 'manufacturer-name' => $prod[12],
+                 'name' => $prod[13],
+                 'price'  => $prod[14],
+                 'retail-price' => null,
+                 'sale-price' => $prod[16],
+                 'sku' => $prod[17],
+                 'upc' => $prod[18]
+             ];
+
+
+
+         return $productItem;
+     }
 
     // returns just products
     function parseResponse($data){
