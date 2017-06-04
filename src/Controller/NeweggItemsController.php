@@ -28,37 +28,10 @@ class NeweggItemsController extends AppController
         $this->set('_serialize', ['items']);
     }
 
-    function postHandeler(){
-        if ($this->request->is('post')) {
-            $this->Flash->set('post');
-
-        }
-
-    }
-
-
-    public function add()
-    {
-        $item = $this->Items->newEntity();
-        if ($this->request->is('post')) {
-            $item = $this->Items->patchEntity($item, $this->request->data);
-            if ($this->Items->save($item)) {
-                $this->Flash->success(__('The item has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The item could not be saved. Please, try again.'));
-        }
-        $this->set(compact('item'));
-        $this->set('_serialize', ['item']);
-    }
-
-
     public function searchNeweggItems()
     {
         $products = null;
         $loadData = false;
-
 
         include_once 'Component/NeweggService/NeweggService.php';
 
@@ -67,7 +40,6 @@ class NeweggItemsController extends AppController
                 $newEggService = $this->service = new \NeweggService();
                 $keywords = $this->request->data['keywords'];
                 $keywords = str_replace(' ', '+', $keywords);
-
                 $products = $newEggService->get_items($keywords);
                 $loadData = true;
             }
@@ -76,19 +48,13 @@ class NeweggItemsController extends AppController
                 debug($this->request->data);
 
             }
-
         }
-
-
         $this->set('items', $products);
         $this->loadData = true;
         $this->set('load_data', $loadData);
-
-
-
     }
 
-    public function view()
+    public function Add()
     {
         // Create from a string datetime.
         if ($this->request->is('post')) {
@@ -101,7 +67,7 @@ class NeweggItemsController extends AppController
             $itemData = [
                 'title' => $data['title'],
                 'price' => $data['price'],
-                'asin' => 'null',
+                'affiliateItemID' =>  $data['affiliateItemID'],
                 'normal_price' => 'null',
                 'list_price' => $data['price'],
                 'item_url' => $data['signed-url'],
@@ -109,6 +75,7 @@ class NeweggItemsController extends AppController
                 'small_img_url' => $data['image-url'],
                 'medium_img_url' => $data['image-url'],
                 'publisherID' => $this->Auth->user('id'),
+                'affiliateID' => 2 # 2 is for newEgg items
             ];
             $item = $itemsC->Items->patchEntity($item, $itemData);
 
@@ -117,15 +84,11 @@ class NeweggItemsController extends AppController
                 return $this->redirect(['controller' => 'items', 'action' => 'view', $item->id]);
             } else {
                 $this->Flash->error('Item not saved!');
+                return $this->redirect(['controller' => 'items', 'action' => 'index']);
                 debug($item);
             }
-
-
             $this->set('item', $item);
             $this->set('_serialize', ['item']);
-
-
-
         }
     }
 

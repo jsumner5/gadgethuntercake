@@ -19,7 +19,7 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('asin') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('affilliate item id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('date_added') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('image') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -29,7 +29,7 @@
             <?php foreach ($items as $item): ?>
             <tr>
                 <td><?= $this->Number->format($item->id) ?></td>
-                <td><?= h($item->asin) ?></td>
+                <td><?= h($item->affilliateItemID) ?></td>
                 <td><?= h($item->date_added) ?></td>
                 <td><?= $this->Html->image($item->small_img_url) ?></td>
                 <td class="actions">

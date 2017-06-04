@@ -41,7 +41,7 @@
         <tbody>
         <?php foreach ($this->viewVars['items'] as $item):
             ?>
-        <?= $this->Form->create('item',['url'=>'/neweggitems/view',
+        <?= $this->Form->create('item',['url'=>'/neweggitems/add',
                 'type' => 'post']);
         ?>
 
@@ -52,6 +52,7 @@
                 <td><?= $item['sale-price']?></td>
                 <td> <?= $this->Form->button(__('Add Item'))?></td>
 
+                <?= $this->Form->hidden('affiliateItemID', ['value' => $item['sku']]) ?>
                 <?= $this->Form->hidden('image-url',['value' =>$item['image-url']]) ?>
                 <?= $this->Form->hidden('title',['value' =>$item['name']]) ?>
                 <?= $this->Form->hidden('price',['value' =>$item['price']]) ?>

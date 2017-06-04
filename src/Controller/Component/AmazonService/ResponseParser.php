@@ -33,7 +33,9 @@ class ResponseParser{
     }
 
     function getPrice($xml_object){
-        $price = $xml_object->Items[0]->Item->Offers->Offer->OfferListing->SalePrice->Amount;
+        if($xml_object->Items[0]->Item->Offers->Offer->OfferListing->SalePrice->Amount){
+            $price = $xml_object->Items[0]->Item->Offers->Offer->OfferListing->SalePrice->Amount;
+        }
 
         if($price == ''){
             $price = $xml_object->Items[0]->Item->Offers->Offer->OfferListing->Price->Amount;
