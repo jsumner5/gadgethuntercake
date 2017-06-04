@@ -1,6 +1,9 @@
-<?php $this->Html->meta('keywords', 'keywords, are, sweet', ['block' => true]); ?>
+<?php
+$this->Html->meta('keywords', 'amazon, newegg, deals, tech, gadgethunter', ['block' => true]);
+$this->assign('title','Gadget Hunter Deals');
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+?>
+
 
 
 
@@ -59,6 +62,9 @@
                 </form>
             </div>
 
+            <!--title/slogan/header-->
+<!--            <h2>Top Tech Deals Out Right Now</h2>-->
+
             <!--display table of items-->
             <div class="tableWrapper">
                 <table id="item_table" >
@@ -69,14 +75,23 @@
                     if(($itemCount %4 == 0) || ($itemCount == 0)){
                         echo '<tr style="border-bottom: none;">';
                     }
-
                     ?>
 
-                            <td class="item-container"><?= $this->Html->image(
+                            <td class="item-container">
+                                <?php
+                                $image = $this->Html->image(
                                     $item['large_img_url'],
                                     [
-                                        'url' => $item['item_url'],
                                         'alt' => $item['title']
+                                    ]);
+                                ?>
+
+                                <?= $this->Html->link(
+                                    $image,
+                                    $item['item_url'],
+                                    [
+                                        'target' => '_blank',
+                                        'escape' => false
                                     ]
                                 )?>
                                 <table class="priceBar">
