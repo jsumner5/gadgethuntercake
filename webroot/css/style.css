@@ -130,7 +130,7 @@ p{
 
 
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 1070px) {
 	#actions-sidebar{
 		display:none;
 	}
