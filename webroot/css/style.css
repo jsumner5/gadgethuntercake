@@ -16,6 +16,17 @@
 	margin-left: auto;
 	margin-right: auto;
 }
+/*item images on the home page*/
+.item-container img{
+	min-width: 60%;
+}
+#slogan{
+	font-size: 2em;
+	vertical-align: -webkit-baseline-middle;
+	font-weight: bold;
+	margin-left: 1em;
+}
+
 
 /* item Price bar */
 .priceBar{
@@ -142,6 +153,9 @@ p{
 	div > ul > li {
 		width: 33.33% !important;
 
+	}
+	#slogan{
+		display: none;
 	}
 }
 

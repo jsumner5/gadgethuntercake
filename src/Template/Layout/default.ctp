@@ -22,7 +22,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <?= $cakeDescription ?>:
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
@@ -91,11 +90,11 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                     ]
 
             ) ?>
+            <span id="slogan">Top Tech Deals Right Now</span>
             <ul class="right menu-container">
                 <li><a target="_blank" onclick="displayModal()" class="text-center " style="line-height: 1.5em;padding-top: 1em;"><i class="fa fa-envelope-o fa-3x"></i></a target="_blank" class="text-center " style="line-height: 1.5em;padding-top: 1em;"></li>
                 <li><a target="_blank" href="#" class="text-center med-text" style="line-height: 1.5em;padding-top: 1.2em;" onclick=""> Blog</a></li>
                 <li><a target="_blank" href="#" class="text-center med-text" style="line-height: 1.5em;padding-top: 1.2em;">Contests</a></li>
-
             </ul>
         </div>
     </nav>
