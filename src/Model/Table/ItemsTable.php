@@ -48,8 +48,8 @@ class ItemsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->requirePresence('asin', 'create')
-            ->notEmpty('asin');
+            ->requirePresence('affiliateItemID', 'create')
+            ->notEmpty('affiliateItemID');
 
         $validator
             ->requirePresence('title', 'create')

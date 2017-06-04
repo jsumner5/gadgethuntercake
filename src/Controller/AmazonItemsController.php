@@ -28,7 +28,7 @@ class AmazonItemsController extends AppController
             $xml_item = $service->getXmlObjectById($asin);
 
             # build the item
-            $item->asin = $asin;
+            $item->affiliateItemID = $asin;
             $item->title = $service->getTitle($xml_item);
             $item->price = $service->getPrice($xml_item);
             $item->list_price = $item->price;

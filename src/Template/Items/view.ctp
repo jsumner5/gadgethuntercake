@@ -8,8 +8,8 @@
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Return to Dash'), ['controller' => 'pages', 'action' => 'display', 'dash']) ?></li>
         <li><?= $this->Html->link(__('New Amazon Item'), ['controller' => 'AmazonItems', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('New Newegg Item'), ['controller'=> 'NeweggItems','action' => 'search_newegg_items']) ?></li>
-        <li><?= $this->Html->link(__('New Item'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('New Newegg Item'), ['controller' => 'NeweggItems','action' => 'search_newegg_items']) ?></li>
+        <li><?= $this->Html->link(__('List Items'), ['controller' => 'items','action' => 'index']) ?></li>
     </ul>
 </nav>
 <div class="items view large-9 medium-8 columns content">
@@ -21,8 +21,8 @@
             <td><?= $this->Number->format($item->id) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Asin') ?></th>
-            <td><?= h($item->asin) ?></td>
+            <th scope="row"><?= __('Affiliate item ID') ?></th>
+            <td><?= h($item->affiliateItemID) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Title') ?></th>
@@ -41,8 +41,8 @@
             <td><?= h($item->list_price) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Publisher') ?></th>
-            <td><?= h($item->publisher) ?></td>
+            <th scope="row"><?= __('Publisher ID') ?></th>
+            <td><?= h($item->publisherID) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Signed Link') ?></th>
