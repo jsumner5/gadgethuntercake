@@ -30,7 +30,12 @@
          curl_close($ch);
          $products = $this->parseResponse($server_output);
 
-         $items = new SimpleXMLElement($products);
+         if($products) {
+             $items = new SimpleXMLElement($products);
+         }else{
+             # usually means nothing was found
+             return false;
+         }
          $products = [];
          foreach ($items as $item) {
             $prod=[];

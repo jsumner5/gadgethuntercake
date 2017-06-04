@@ -41,7 +41,12 @@ class NeweggItemsController extends AppController
                 $keywords = $this->request->data['keywords'];
                 $keywords = str_replace(' ', '+', $keywords);
                 $products = $newEggService->get_items($keywords);
-                $loadData = true;
+                if($products){
+                    $loadData = true;
+                }else{
+                    $this->Flash->set('no results found for "'.$this->request->data['keywords'].'"');
+                }
+
             }
             else{
                 $loadData = false;
@@ -71,7 +76,7 @@ class NeweggItemsController extends AppController
                 'normal_price' => 'null',
                 'list_price' => $data['price'],
                 'item_url' => $data['signed-url'],
-                'large_img_url' => $data['image-url'],
+                'large_img_url' => str_replace('CompressAll200','',$data['image-url']),
                 'small_img_url' => $data['image-url'],
                 'medium_img_url' => $data['image-url'],
                 'publisherID' => $this->Auth->user('id'),

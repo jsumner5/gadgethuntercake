@@ -16,6 +16,9 @@
 	margin-left: auto;
 	margin-right: auto;
 }
+.item-container img{
+	min-width: 60%;
+}
 
 /* item Price bar */
 .priceBar{
