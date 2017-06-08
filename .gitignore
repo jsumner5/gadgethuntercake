@@ -3,3 +3,4 @@
 /.idea/*
 tmp/*
 *.sqlite
+config/app.php
