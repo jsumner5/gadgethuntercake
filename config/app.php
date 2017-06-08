@@ -271,7 +271,7 @@ return [
             //'port' => 'non_standard_port_number',
             'username' => 'gadgethunterco',
             'password' => 'tinytim01',
-            'database' => 'gadgethunterco',
+            'database' => 'gadgethunter',
             'encoding' => 'utf8',
             'timezone' => 'UTC',
             'cacheMetadata' => true,
