@@ -41,7 +41,7 @@
         <tbody>
         <?php foreach ($this->viewVars['items'] as $item):
             ?>
-        <?= $this->Form->create('item',['url'=>'/neweggitems/add',
+        <?= $this->Form->create('item',['url'=>'/NeweggItems/Add',
                 'type' => 'post']);
         ?>
 
