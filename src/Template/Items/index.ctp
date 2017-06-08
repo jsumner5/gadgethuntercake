@@ -29,7 +29,7 @@
             <?php foreach ($items as $item): ?>
             <tr>
                 <td><?= $this->Number->format($item->id) ?></td>
-                <td><?= h($item->affilliateItemID) ?></td>
+                <td><?= h($item->affiliateItemID) ?></td>
                 <td><?= h($item->date_added) ?></td>
                 <td><?= $this->Html->image($item->small_img_url) ?></td>
                 <td class="actions">
