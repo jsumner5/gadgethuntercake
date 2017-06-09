@@ -2,7 +2,10 @@
 $this->Html->meta('keywords', 'amazon, newegg, deals, tech, gadgethunter', ['block' => true]);
 $this->assign('title','Gadget Hunter Deals');
 
+echo $this->Html->script(['googleAnalytics', 'onLoad']);
+
 ?>
+
 
 
 
@@ -42,7 +45,7 @@ $this->assign('title','Gadget Hunter Deals');
                 <span onclick="document.getElementById('newsLetterModal').style.display='none'" class="close" title="Close Deals Letter">
                     <i class="fa fa-times-circle fa-2x close" aria-hidden="true"></i>
                 </span>
-                <form class="modal-content animate" action="index.php" method="POST">
+                <form class="modal-content animate" action="./home/onSubscribe" method="POST">
                     <div class="container">
                         <h2>Get up to 73% off items featured in our weekly deals letter</h2>
                         <label ><b>Name</b></label>
@@ -133,9 +136,9 @@ $this->assign('title','Gadget Hunter Deals');
 
                 <div class="paginator">
                     <ul class="pagination">
-                        <?= $this->Paginator->prev('<i class="fa fa-arrow-left fa-2x" style="color:black;"> </i>', ['escape' => false]) ?>
-                        <?= $this->Paginator->numbers() ?>
-                        <?= $this->Paginator->next('<i class="fa fa-arrow-right fa-2x" style="color:black;"> </i>', ['escape' => false]) ?>
+                        <?= $this->Paginator->prev('<i class="fa fa-arrow-left fa-2x" style="color:black;"> </i>', ['escape' => false]); ?>
+                        <?= $this->Paginator->numbers(['modulus' => 4]); ?>
+                        <?= $this->Paginator->next('<i class="fa fa-arrow-right fa-2x" style="color:black;"> </i>', ['escape' => false]); ?>
 
                     </ul>
                     <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} items(s) of {{count}}')]) ?></p>

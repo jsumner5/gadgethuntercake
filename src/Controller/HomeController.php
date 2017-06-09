@@ -14,6 +14,10 @@ use Cake\ORM\TableRegistry;
 class HomeController extends AppController
 {
 
+    public function beforeRender(Event $event)
+    {
+        $this->viewBuilder()->layout('default');
+    }
     public function index()
     {
         $options = [
@@ -21,12 +25,36 @@ class HomeController extends AppController
             'order' => [
                 'id' => 'desc'
             ]
+
         ];
         $itemsC = new ItemsController();
 
         $items = $this->paginate($itemsC->Items,$options);
         $this->set(compact('items'));
         $this->set('_serialize', ['items']);
+    }
+
+
+    function onSubscribe(){
+        include_once 'Component/MailchimpService.php';
+
+        $service = new \MailchimpService();
+
+        $data = [
+            'email'     => $this->request->data['email'],
+            'status'    => 'subscribed',
+            'firstname' => $this->request->data['name'],
+        ];
+        $status = $service->addSubscriber($data);
+
+        if($status !== 200){
+            $this->Flash->error('Error Occurred');
+            return $this->redirect('/');
+        }else {
+            $this->Flash->success('Subscribed');
+            return $this->redirect('/');
+        }
+
     }
 
     function beforeFilter(Event $event)
