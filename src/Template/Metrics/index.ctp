@@ -58,8 +58,8 @@
     <!--Div that will hold the pie chart-->
     <table>
         <thead>
-        <th> Item Posts By User</th>
-        <th> Visitor Metrics</th>
+        <th>Item Posts By User</th>
+        <th>Visitor Metrics</th>
         </thead>
         <tbody>
         <tr><td id="chart_items_user"></td></tr>
@@ -100,7 +100,7 @@
 
             // Step 3: Authorize the user.
 
-            var CLIENT_ID = '1082994385875-k4adi0893sbm7q5gnk6b2qu90bo6a6ca.apps.googleusercontent.com';
+            var CLIENT_ID = '1082994385875-v56jf3jkghmf8dlb5ero1rbq1ivoaf3b.apps.googleusercontent.com';
 
             gapi.analytics.auth.authorize({
                 container: 'auth-button',
