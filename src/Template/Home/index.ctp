@@ -145,6 +145,18 @@ echo $this->Html->script(['googleAnalytics', 'onLoad']);
                 </div>
             <!-- table wrapper-->
         </div>
+            <footer id="footer">
+        <span style="
+                		box-shadow: 0 10px 5px -4px gray;
+                        width: 90%;
+                        display: block;
+                        margin:auto;
+                        height: 10px;">
+        </span>
+                <ul class="footer_ul">
+<!--                    <li>2016 GadgetHunter.co</li>-->
+                </ul>
+            </footer>
             <!-- container -->
     </section>
 </div>
@@ -155,6 +167,8 @@ echo $this->Html->script(['googleAnalytics', 'onLoad']);
 
 
 </body>
+
+
 
 
 </html>

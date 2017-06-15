@@ -37,18 +37,18 @@ class ResponseParser{
             $price = $xml_object->Items[0]->Item->Offers->Offer->OfferListing->SalePrice->Amount;
         }
 
-        if($price == ''){
+        if(!isset($price)){
             $price = $xml_object->Items[0]->Item->Offers->Offer->OfferListing->Price->Amount;
         }
 
-        if($price == ''){
+        if(!isset($price)){
             $price = $xml_object->Items[0]->Item->ItemAttributes->ListPrice->Amount;
         }
 
-        if($price == ''){
+        if(!isset($price)){
             $price = $xml_object->Items[0]->Item->OfferSummary->LowestNewPrice->Amount;
         }
-        if($price == ''){
+        if(!isset($price)){
             $price ='';
         }
         #format price as a decimal

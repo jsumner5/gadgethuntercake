@@ -122,6 +122,37 @@ p{
 	background-color: #324BF7 !important;
 }
 
+/* Footer */
+#footer .icons {
+	margin: 0 0 4em 0;
+}
+
+#footer .menu a {
+	color: inherit;
+}
+
+#footer .copyright {
+	font-size: 0.8em;
+}
+#footer {
+	color: #949494;
+	text-align: center;
+}
+#footer ul li {
+	display:inline-block;
+	border-right: solid 1px #949494;
+	padding-right:1em;
+	padding-left:1em;
+}
+.footer_ul li a{
+	color:#233CF8;
+	vertical-align:middle;
+	font-size:2em;
+}
+.footer_ul li a:hover{
+	color:#545454;
+}
+
 
 
 @media only screen and (max-width: 1070px) {
