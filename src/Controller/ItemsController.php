@@ -157,36 +157,6 @@ class ItemsController extends AppController
             }
         }
 
-        #Update newegg items
-
-        $neService = new \NeweggService();
-
-        $neweggItemsQuery = $this->Items->find('all')
-            ->where(['Items.date_price_updated !=' => $time, 'Items.affiliateID =' => 2])
-            ->limit(20);
-
-
-        $items = $neweggItemsQuery->toArray();
-
-        foreach ($items as $item){
-            usleep(250000);
-            $xmlItem = $neService->get_item($item['affiliateItemID']);
-
-            # set item prices and date price updated
-            $item->price = floatval($xmlItem->{'sale-price'});
-            $item->list_price = $item->price;
-            $item->normal_price = null;
-            $item->date_price_updated = $time;
-
-
-            if ($this->Items->save($item)) {
-                echo $item['affiliateItemID'] . 'updated <br>';
-            }else{
-                echo 'there was a problem saving item'.$item['affiliateItemID'];
-            }
-
-        }
-
     }
 
 

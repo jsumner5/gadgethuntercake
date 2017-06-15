@@ -101,7 +101,24 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <div class="container clearfix">
         <?= $this->fetch('content')?>
     </div>
-    <footer>
-    </footer>
+<!--    <footer id="footer">-->
+<!--        <span style="-->
+<!--                		box-shadow: 0 10px 5px -4px gray;-->
+<!--                        width: 90%;-->
+<!--                        display: block;-->
+<!--                        margin:auto;-->
+<!--                        height: 10px;">-->
+<!--        </span>-->
+<!--        <ul class="footer_ul">-->
+<!--            <li>2016 GadgetHunter.co</li>-->
+<!--            <li class="footer_li"><a href="https://www.surveymonkey.com/r/W5S88B2">Feedback</a></li>-->
+<!--            <li><span><a href="index.php">Home</a></span></li>-->
+<!--            <li><span><a href="about.php">About</a></span></li>-->
+<!--            <li><span><a href="privacy/privacypolicy.htm">Privacy Policy</a></span></li>-->
+<!---->
+<!--            <li><a href="https://www.instagram.com/gadgethunter.co/"><img style="width:25px; vertical-align:middle;" src="images/instagram.png"/></a><li>-->
+<!---->
+<!--        </ul>-->
+<!--    </footer>-->
 </body>
 </html>

@@ -25,6 +25,10 @@
             <td><?= h($item->affiliateItemID) ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('Affiliate ID') ?></th>
+            <td><?= h($item->affiliateID) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Title') ?></th>
             <td><?= h($item->title) ?></td>
         </tr>
