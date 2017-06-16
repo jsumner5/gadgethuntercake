@@ -14,7 +14,7 @@ class HelloShell extends Shell
 {
     public function main()
     {
-        include_once '../Controller/Component/AmazonService/AmazonService.php';
+        include_once '/../Controller/Component/AmazonService/AmazonService.php';
         $this->out('Hello world.');
     }
 }
