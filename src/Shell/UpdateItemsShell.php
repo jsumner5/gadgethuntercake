@@ -23,6 +23,8 @@ class UpdateItemsShell extends Shell
 
         $this->loadModel('Items');
         $this->time = Time::now()->setTimezone('America/New_York')->format('Y-m-d');
+        $this->COMPONENTPATH = realpath($_SERVER["DOCUMENT_ROOT"].'/src/Controller/Component');
+
     }
 
     public function main()
@@ -30,7 +32,7 @@ class UpdateItemsShell extends Shell
         $this->out('update items shell working');
         $this->updateAmazonItems();
         $this->updateNeweggItems();
-        $this->COMPONENTPATH = realpath($_SERVER["DOCUMENT_ROOT"].'/src/Controller/Component');
+
     }
 
 
