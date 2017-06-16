@@ -76,9 +76,18 @@
 
     <section id="auth-button"></section>
     <section id="view-selector"></section>
-    <section id="userSources"></section>
-    <section id="dataChart1"></section>
-    <section id="userCities"></section>
+<!--    containers for the graphs -->
+    <section id="usersByDayOfWeekContainer"></section>
+    <section id="topOperatingSystemsContainer"></section>
+
+    <section id="userNewVsReturningYesterdayContainer"></section>
+    <section id="userNewVsReturningTodayContainer"></section>
+
+    <section id="userSourcesContainer"></section>
+
+
+
+    <section id="userCitiesContainer"></section>
 
 
 
@@ -95,106 +104,7 @@
         }(window,document,'script'));
     </script>
 
-    <script>
-        gapi.analytics.ready(function() {
-
-            // Step 3: Authorize the user.
-
-            var CLIENT_ID = '1082994385875-v56jf3jkghmf8dlb5ero1rbq1ivoaf3b.apps.googleusercontent.com';
-
-            gapi.analytics.auth.authorize({
-                container: 'auth-button',
-                clientid: CLIENT_ID,
-            });
-
-            // Step 4: Create the view selector.
-
-            var viewSelector = new gapi.analytics.ViewSelector({
-                container: 'view-selector'
-            });
-
-            // Step 5: Create the user sources chart.
-
-            var userSources = new gapi.analytics.googleCharts.DataChart({
-                reportType: 'ga',
-                query: {
-                    'dimensions': 'ga:source',
-                    'metrics': 'ga:users',
-                    'start-date': '14daysAgo',
-                    'end-date': 'today',
-                    'sort': '-ga:source',
-                    'max-results': '10'
-                },
-                chart: {
-                    type: 'PIE',
-                    container: 'userSources',
-                    options:{
-                        title: 'Top Sources (last 14 days)',
-                        width: '100%',
-                        pieHole: 4/9
-                    },
-                }
-
-            });
-
-            var userCities = new gapi.analytics.googleCharts.DataChart({
-                reportType: 'ga',
-                query: {
-                    'dimensions': 'ga:city',
-                    'metrics': 'ga:sessions',
-                    'start-date': '30daysAgo',
-                    'end-date': 'today',
-                    'sort': '-ga:sessions',
-                    'max-results': '10'
-                },
-                chart: {
-                    type: 'PIE',
-                    container: 'userCities',
-                    options:{
-                        title: 'Top Cities (last 30 days)',
-                        width: '100%',
-                        pieHole: 4/9
-                    },
-                }
-
-            });
-
-            var dataChart1 = new gapi.analytics.googleCharts.DataChart({
-                query: {
-                    metrics: 'ga:sessions',
-                    dimensions: 'ga:operatingsystem',
-                    'start-date': '30daysAgo',
-                    'end-date': 'today',
-                },
-                chart: {
-                    container: 'dataChart1',
-                    type: 'PIE',
-                    options: {
-                        width: '100%',
-                        pieHole: 4/9,
-                        title: 'Top Operating Systems (last 30 days)',
-                    }
-                }
-            });
-
-            // Step 6: Hook up the components to work together.
-
-            gapi.analytics.auth.on('success', function(response) {
-                viewSelector.execute();
-            });
-
-            viewSelector.on('change', function(ids) {
-                var newIds = {
-                    query: {
-                        ids: ids
-                    }
-                }
-                userSources.set(newIds).execute();
-                dataChart1.set(newIds).execute();
-                userCities.set(newIds).execute();
-            });
-        });
-    </script>
+    <?= $this->Html->script('googleAnalyticsGraphs')?>
 
 
 
