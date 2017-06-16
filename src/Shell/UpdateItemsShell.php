@@ -37,8 +37,8 @@ class UpdateItemsShell extends Shell
 
 
     function updateAmazonItems(){
-        $COMPONENTPATH = realpath($_SERVER["DOCUMENT_ROOT"].'/src/Controller/Component');
-        include $COMPONENTPATH.'/AmazonService/AmazonService.php';
+        $COMPONENTPATH = realpath($_SERVER["DOCUMENT_ROOT"]);
+        include "$COMPONENTPATH/src/Controller/Component/AmazonService/AmazonService.php";
 
         $amazonService = new \AmazonService("gadgethunter2-20", "AKIAJO4D6JCASSJUQULA", "IyV+9o1NP7KtE8Ze+tzDCexwYdCSEY5Sa7U3trT9");
 
@@ -78,8 +78,8 @@ class UpdateItemsShell extends Shell
 
 
     function updateNeweggItems(){
-        $COMPONENTPATH = realpath($_SERVER["DOCUMENT_ROOT"].'/src/Controller/Component');
-        include $COMPONENTPATH.'/NeweggService/NeweggService.php';
+        $COMPONENTPATH = realpath($_SERVER["DOCUMENT_ROOT"]);
+        include "$COMPONENTPATH/src/Controller/Component/NeweggService/NeweggService.php";
 
         $neService = new \NeweggService();
 
