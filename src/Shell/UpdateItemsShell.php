@@ -30,11 +30,12 @@ class UpdateItemsShell extends Shell
         $this->out('update items shell working');
         $this->updateAmazonItems();
         $this->updateNeweggItems();
+        $this->COMPONENTPATH = realpath($_SERVER["DOCUMENT_ROOT"].'/src/Controller/Component');
     }
 
 
     function updateAmazonItems(){
-        include_once '/../Controller/Component/AmazonService/AmazonService.php';
+        include $this->COMPONENTPATH.'/AmazonService/AmazonService.php';
 
         $amazonService = new \AmazonService("gadgethunter2-20", "AKIAJO4D6JCASSJUQULA", "IyV+9o1NP7KtE8Ze+tzDCexwYdCSEY5Sa7U3trT9");
 
@@ -74,7 +75,7 @@ class UpdateItemsShell extends Shell
 
 
     function updateNeweggItems(){
-        include_once '/../Controller/Component/NeweggService/NeweggService.php';
+        include $this->COMPONENTPATH.'/NeweggService/NeweggService.php';
 
         $neService = new \NeweggService();
 
