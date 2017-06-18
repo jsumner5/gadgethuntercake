@@ -152,6 +152,24 @@ gapi.analytics.ready(function() {
         }
     });
 
+    var sessionsToday = new gapi.analytics.googleCharts.DataChart({
+        query: {
+            metrics: 'ga:sessions',
+            dimensions: 'ga:source',
+            'start-date': 'today',
+            'end-date': 'today',
+        },
+        chart: {
+            container: 'sessionsTodayContainer',
+            type: 'COLUMN',
+            options: {
+                width: '100%',
+                pieHole: 4/9,
+                title: 'Sessions today',
+            }
+        }
+    });
+
     // Step 6: Hook up the components to work together.
 
     gapi.analytics.auth.on('success', function(response) {
@@ -164,6 +182,7 @@ gapi.analytics.ready(function() {
                 ids: ids
             }
         }
+        sessionsToday.set(newIds).execute();
         usersByDayOfWeek.set(newIds).execute();
         operatingSystems.set(newIds).execute();
         userCities.set(newIds).execute();
