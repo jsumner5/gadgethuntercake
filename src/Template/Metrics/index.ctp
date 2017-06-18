@@ -79,6 +79,8 @@
 <!--    containers for the graphs -->
     <section id="usersByDayOfWeekContainer"></section>
     <section id="topOperatingSystemsContainer"></section>
+    <section id="sessionsTodayContainer"></section>
+
 
     <section id="userNewVsReturningYesterdayContainer"></section>
     <section id="userNewVsReturningTodayContainer"></section>

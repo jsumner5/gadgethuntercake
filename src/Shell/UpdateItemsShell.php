@@ -28,10 +28,16 @@ class UpdateItemsShell extends Shell
 
     public function main()
     {
+        $count=1;
+        $count2=1;
+        while(!$this->updateAmazonItems()){
+            $this->out('Updating Amazon Items attempt #'.$count++);
+        }
+        while(!$this->updateNeweggItems()){
+        $this->out('Updating Newegg Items attempt #'.$count2++);
+        }
 
-        $this->out('update items shell working');
-        $this->updateAmazonItems();
-        $this->updateNeweggItems();
+        $this->out('Item updates complete...');
 
     }
 
@@ -48,7 +54,7 @@ class UpdateItemsShell extends Shell
         # update amazon items
         $amazonItemsQuery = $this->Items->find('all')
             ->where(['Items.date_price_updated !=' => $time, 'Items.affiliateID =' => 1])
-            ->limit(20)
+            ->limit(50)
             ->order(['id' => 'DESC']);
 
         #Converting the query to an array will execute it.
@@ -74,6 +80,12 @@ class UpdateItemsShell extends Shell
         }
         $this->out('updated '. $updatedItemsCount .' Amazon items');
 
+        if(count($items) != $updatedItemsCount){
+            return false;
+        }else{
+            return true;
+        }
+
     }
 
 
@@ -85,7 +97,8 @@ class UpdateItemsShell extends Shell
 
         $neweggItemsQuery = $this->Items->find('all')
             ->where(['Items.date_price_updated !=' => $this->time, 'Items.affiliateID =' => 2])
-            ->limit(20);
+            ->limit(50)
+            ->order(['id' => 'DESC']);
 
         $items = $neweggItemsQuery->toArray();
 
@@ -110,5 +123,11 @@ class UpdateItemsShell extends Shell
 
         }
         printf('Updated '.$updatedItemsCount.' Newegg items.');
+
+        if(count($items) != $updatedItemsCount){
+            return false;
+        }else{
+            return true;
+        }
     }
 }
