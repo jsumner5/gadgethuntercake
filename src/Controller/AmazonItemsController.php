@@ -38,6 +38,7 @@ class AmazonItemsController extends AppController
             $item->small_img_url = $service->getSmallImgUrl($xml_item);
             $item->publisherID = $this->Auth->user('id');
             $item->affiliateID = 1;
+            $item->date_added = $this->time;
 
 
             if ($itemsC->Items->save($item)) {

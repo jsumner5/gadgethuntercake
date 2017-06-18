@@ -124,43 +124,5 @@ class ItemsController extends AppController
         return $result;
     }
 
-    function updateItems(){
-        include_once 'Component/AmazonService/AmazonService.php';
-        include_once 'Component/NeweggService/NeweggService.php';
-        $this->service = new \AmazonService("gadgethunter2-20", "AKIAJO4D6JCASSJUQULA", "IyV+9o1NP7KtE8Ze+tzDCexwYdCSEY5Sa7U3trT9");
-
-        # Get the current date
-        $time = Time::now()->setTimezone('America/New_York')->format('Y-m-d');
-
-        # update amazon items
-        $amazonItemsQuery = $this->Items->find('all')
-            ->where(['Items.date_price_updated !=' => $time, 'Items.affiliateID =' => 1])
-            ->limit(20)
-            ->order(['id' => 'DESC']);
-
-        #Converting the query to an array will execute it.
-        $items = $amazonItemsQuery->toArray();
-        echo 'items found: '.  count($items).'<br>';
-        foreach( $items as $item){
-            usleep(250000);
-            $xml_item = $this->service->getXmlObjectById($item['affiliateItemID']);
-            # set item prices and date price updated
-            $item->price = $this->service->getPrice($xml_item);
-            $item->date_price_updated = $time;
-            $item->normal_price = $this->service->getNormalPrice($xml_item);
-            $item->list_price = $item->price;
-
-            if ($this->Items->save($item)) {
-                echo $item['affiliateItemID'] . 'updated <br>';
-            }else{
-                echo 'there was a problem saving item'.$item['asin'];
-            }
-        }
-
-    }
-
-
-
-
 
 }
