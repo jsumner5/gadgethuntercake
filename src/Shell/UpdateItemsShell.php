@@ -30,15 +30,18 @@ class UpdateItemsShell extends Shell
     {
         $count=1;
         $count2=1;
-        while(!$this->updateAmazonItems()){
-            $this->out('Updating Amazon Items attempt #'.$count++);
-        }
-        while(!$this->updateNeweggItems()){
-        $this->out('Updating Newegg Items attempt #'.$count2++);
-        }
+        if($count < 4 and $count2 < 4) {
+            while (!$this->updateAmazonItems()) {
+                $this->out('Updating Amazon Items attempt #' . $count++);
+                sleep(5);
+            }
+            while (!$this->updateNeweggItems()) {
+                $this->out('Updating Newegg Items attempt #' . $count2++);
+                sleep(5);
+            }
 
-        $this->out('Item updates complete...');
-
+            $this->out('Item updates complete...');
+        }
     }
 
 

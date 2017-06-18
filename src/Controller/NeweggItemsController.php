@@ -80,7 +80,8 @@ class NeweggItemsController extends AppController
                 'small_img_url' => $data['image-url'],
                 'medium_img_url' => $data['image-url'],
                 'publisherID' => $this->Auth->user('id'),
-                'affiliateID' => 2 # 2 is for newEgg items
+                'affiliateID' => 2, # 2 is for newEgg items
+                'date_added' => $this->time
             ];
             $item = $itemsC->Items->patchEntity($item, $itemData);
 
