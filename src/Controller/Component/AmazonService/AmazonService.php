@@ -53,7 +53,7 @@
          $request_url = 'http://'.$this->endpoint.$this->uri.'?'.$canonical_query_string.'&Signature='.rawurlencode($signature);
 
          //create XML object if this happens I should handle the error
-         $xml=simplexml_load_file($request_url) or die("Error: Cannot create XML object ::: ASIN = ".$asin);
+         $xml=simplexml_load_file($request_url) or printf("Error: Cannot create XML object ::: ASIN = ".$asin);
 
          return $xml;
      }
