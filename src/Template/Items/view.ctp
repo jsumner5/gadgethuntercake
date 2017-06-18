@@ -8,7 +8,6 @@
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Return to Dash'), ['controller' => 'pages', 'action' => 'display', 'dash']) ?></li>
         <li><?= $this->Html->link(__('Edit Item'), ['controller' => 'items','action' => 'edit',$item->id]) ?></li>
-
         <li><?= $this->Html->link(__('New Amazon Item'), ['controller' => 'AmazonItems', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('New Newegg Item'), ['controller' => 'NeweggItems','action' => 'search_newegg_items']) ?></li>
         <li><?= $this->Html->link(__('List Items'), ['controller' => 'items','action' => 'index']) ?></li>
