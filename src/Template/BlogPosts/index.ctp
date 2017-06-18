@@ -29,7 +29,7 @@
                 <td><?= h($blogPost->last_edited) ?></td>
                 <td><?= $this->Number->format($blogPost->published) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $blogPost->id]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $blogPost->title]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $blogPost->id]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $blogPost->id], ['confirm' => __('Are you sure you want to delete # {0}?', $blogPost->id)]) ?>
                 </td>
