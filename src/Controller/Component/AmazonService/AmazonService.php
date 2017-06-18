@@ -54,8 +54,11 @@
 
          //create XML object if this happens I should handle the error
          $xml=simplexml_load_file($request_url) or printf("Error: Cannot create XML object ::: ASIN = ".$asin);
-
-         return $xml;
+         if (isset($xml)){
+             return $xml;
+         }else {
+             return false;
+         }
      }
 
      function getTitle($xmlObj){
