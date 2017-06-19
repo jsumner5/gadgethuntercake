@@ -30,22 +30,29 @@ class UpdateItemsShell extends Shell
     {
         $count=1;
         $count2=1;
-        if($count < 4 and $count2 < 4) {
             $COMPONENTPATH = realpath($_SERVER["DOCUMENT_ROOT"]);
             include "$COMPONENTPATH/src/Controller/Component/AmazonService/AmazonService.php";
             $this->amazonService = new \AmazonService("gadgethunter2-20", "AKIAJO4D6JCASSJUQULA", "IyV+9o1NP7KtE8Ze+tzDCexwYdCSEY5Sa7U3trT9");
 
             while (!$this->updateAmazonItems()) {
-                $this->out('Updating Amazon Items attempt #' . $count++);
-                sleep(5);
+                if($count < 4) {
+                    $this->out('Updating Amazon Items attempt #' . $count++);
+                    sleep(5);
+                }else{
+                    break;
+                }
             }
             while (!$this->updateNeweggItems()) {
-                $this->out('Updating Newegg Items attempt #' . $count2++);
-                sleep(5);
+                if($count2 < 4) {
+                    $this->out('Updating Newegg Items attempt #' . $count2++);
+                    sleep(5);
+                }else{
+                    break;
+                }
             }
 
             $this->out('Item updates complete...');
-        }
+
     }
 
 
