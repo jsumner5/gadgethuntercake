@@ -31,6 +31,10 @@ class UpdateItemsShell extends Shell
         $count=1;
         $count2=1;
         if($count < 4 and $count2 < 4) {
+            $COMPONENTPATH = realpath($_SERVER["DOCUMENT_ROOT"]);
+            include "$COMPONENTPATH/src/Controller/Component/AmazonService/AmazonService.php";
+            $this->amazonService = new \AmazonService("gadgethunter2-20", "AKIAJO4D6JCASSJUQULA", "IyV+9o1NP7KtE8Ze+tzDCexwYdCSEY5Sa7U3trT9");
+
             while (!$this->updateAmazonItems()) {
                 $this->out('Updating Amazon Items attempt #' . $count++);
                 sleep(5);
@@ -46,10 +50,6 @@ class UpdateItemsShell extends Shell
 
 
     function updateAmazonItems(){
-        $COMPONENTPATH = realpath($_SERVER["DOCUMENT_ROOT"]);
-        include "$COMPONENTPATH/src/Controller/Component/AmazonService/AmazonService.php";
-
-        $amazonService = new \AmazonService("gadgethunter2-20", "AKIAJO4D6JCASSJUQULA", "IyV+9o1NP7KtE8Ze+tzDCexwYdCSEY5Sa7U3trT9");
 
         # Get the current date
         $time = Time::now()->setTimezone('America/New_York')->format('Y-m-d');
@@ -66,20 +66,27 @@ class UpdateItemsShell extends Shell
         $updatedItemsCount = 0;
         foreach( $items as $item){
             usleep(250000);
-            $xml_item = $amazonService->getXmlObjectById($item['affiliateItemID']);
-            # set item prices and date price updated
-            $item->price = $amazonService->getPrice($xml_item);
-            $item->date_price_updated = $time;
-            $item->normal_price = $amazonService->getNormalPrice($xml_item);
-            $item->list_price = $item->price;
+            $xml_item = $this->amazonService->getXmlObjectById($item['affiliateItemID']);
+            if($xml_item){
+                # set item prices and date price updated
+                $item->price = $this->amazonService->getPrice($xml_item);
+                $item->date_price_updated = $time;
+                $item->normal_price = $this->amazonService->getNormalPrice($xml_item);
+                $item->list_price = $item->price;
 
-            if ($this->Items->save($item)) {
-                $this->out('updated '.$item['affiliateItemID']);
-                $updatedItemsCount ++;
+                if ($this->Items->save($item)) {
+                    $this->out('updated '.$item['affiliateItemID']);
+                    $updatedItemsCount ++;
+
+                }else{
+                    $this->out('there was a problem saving item'.$item['affiliateItemID']);
+                }
 
             }else{
-                $this->out('there was a problem saving item'.$item['affiliateItemID']);
+                $this->out('error fetching item from amazon service');
             }
+
+
         }
         $this->out('updated '. $updatedItemsCount .' Amazon items');
 
