@@ -52,13 +52,13 @@ class ResponseParser{
             $price ='';
         }
         #format price as a decimal
-        $price = number_format(($price/100),2);
+        $price = number_format(($price/100),2,'.','');
         return $price;
     }
     function getNormalPrice($xml_object){
         $price = $xml_object->Items[0]->Item->ItemAttributes->ListPrice->Amount;
         # format price as a decimal
-        $price = number_format(($price/100),2);
+        $price = number_format(($price/100),2,'.','');
         return $price;
     }
 
