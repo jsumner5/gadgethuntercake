@@ -56,16 +56,15 @@
 
     <body>
     <!--Div that will hold the pie chart-->
-    <table>
-        <thead>
-        <th>Item Posts By User</th>
-        <th>Visitor Metrics</th>
-        </thead>
-        <tbody>
-        <tr><td id="chart_items_user"></td></tr>
-        <tr><td id="chart_visitors"></td></tr>
-        </tbody>
-    </table>
+<!--    <table>-->
+<!--        <thead>-->
+<!--        <th>Item Posts By User</th>-->
+<!--        <th>Visitor Metrics</th>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr><td id="chart_items_user"></td></tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
 
 
 
