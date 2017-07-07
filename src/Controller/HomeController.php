@@ -28,8 +28,15 @@ class HomeController extends AppController
 
         ];
         $itemsC = new ItemsController();
-
         $items = $this->paginate($itemsC->Items,$options);
+
+        foreach($items as $item){
+            if(isset($item['promotionID'])){
+                $item['itemPromotion'] = $itemsC->getItemPromotion($item['id']);
+            }
+        }
+
+
         $this->set(compact('items'));
         $this->set('_serialize', ['items']);
     }
@@ -56,6 +63,10 @@ class HomeController extends AppController
         }
 
     }
+
+
+
+
 
     function setFlash($message = 'This is a flash'){
         $this->Flash->set($message);
