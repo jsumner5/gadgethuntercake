@@ -26,6 +26,7 @@ class ItemsController extends AppController
         ];
 
         $items = $this->paginate($this->Items,$options);
+
         $this->set(compact('items'));
         $this->set('_serialize', ['items']);
     }
@@ -122,6 +123,37 @@ class ItemsController extends AppController
             $result = $title;
         }
         return $result;
+    }
+
+    public function getItemPromotion($itemID){
+        $ItempromotionsM = $this->loadModel('ItemPromotions');
+        $promo = $ItempromotionsM->find('all')
+            ->where(['itemID' => $itemID])
+            ->first();
+        return $promo;
+    }
+    function getPriceInfo($item){
+
+        if(isset($item['promotionID'])){
+            $itemPromotionC = new ItemPromotionsController();
+
+            $itemPromo = $itemPromotionC->ItemPromotions->find('all')
+                ->where(['itemID' => $item['id']])
+                ->first();
+
+            return '<tr style="border-bottom: none;"><td class=""><S>$'.$item['price'].'</S></td></tr>'
+                .'<tr style="border-bottom: none;"><td class="">$'.$itemPromo['priceWithPromotion'].' WITH CODE: '.$itemPromo['promoCode'].'</td></tr>';
+
+        }else{
+            if($item['price'] < ($item['normal_price'] -1 )){
+                return '<tr style="border-bottom: none;"><td class="">'.'From $<s>'.$item['normal_price'].'</s> to $'.$item['price'].'</td></tr>';
+            }else{
+                return '<tr style="border-bottom: none;"><td class="">$'.$item['price'].'</td></tr>';
+            }
+
+
+        }
+
     }
 
 

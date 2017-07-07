@@ -86,4 +86,6 @@ class AppController extends Controller
     {
         return $this->redirect($this->Auth->logout());
     }
+
+
 }
