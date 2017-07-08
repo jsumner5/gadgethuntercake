@@ -40,8 +40,4 @@
 *.ttf binary
 *.otf binary
 *.eot binary
-\config\app.php export-ignore
-/config/app.php export-ignore
-config/app.php export-ignore
-config/app.php merge=ours
-/config/app.php merge=ours
+app.php merge=ours
