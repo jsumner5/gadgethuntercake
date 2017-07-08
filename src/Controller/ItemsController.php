@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use App\Model\Entity\Item;
+use Cake\I18n\Number;
 use Cake\ORM\Entity;
 use Cake\ORM\TableRegistry;
 use Cake\I18n\Time;
@@ -141,14 +142,14 @@ class ItemsController extends AppController
                 ->where(['itemID' => $item['id']])
                 ->first();
 
-            return '<tr style="border-bottom: none;"><td class=""><S>$'.$item['price'].'</S></td></tr>'
-                .'<tr style="border-bottom: none;"><td class="">$'.$itemPromo['priceWithPromotion'].' WITH CODE: '.$itemPromo['promoCode'].'</td></tr>';
+            return '<tr style="border-bottom: none;"><td class=""><S>'.Number::currency($item['price']).'</S></td></tr>'
+                .'<tr style="border-bottom: none;"><td class="">'.Number::currency($itemPromo['priceWithPromotion']).' WITH CODE: '.$itemPromo['promoCode'].'</td></tr>';
 
         }else{
             if($item['price'] < ($item['normal_price'] -1 )){
-                return '<tr style="border-bottom: none;"><td class="">'.'From $<s>'.$item['normal_price'].'</s> to $'.$item['price'].'</td></tr>';
+                return '<tr style="border-bottom: none;"><td class="">'.'From <s>'.Number::currency($item['normal_price']).'</s> to '.Number::currency($item['price']).'</td></tr>';
             }else{
-                return '<tr style="border-bottom: none;"><td class="">$'.$item['price'].'</td></tr>';
+                return '<tr style="border-bottom: none;"><td class="">'.Number::currency($item['price']).'</td></tr>';
             }
 
 
