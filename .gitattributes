@@ -40,3 +40,4 @@
 *.ttf binary
 *.otf binary
 *.eot binary
+\config\app.php merge=ours
