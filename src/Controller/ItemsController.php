@@ -133,6 +133,7 @@ class ItemsController extends AppController
         return $promo;
     }
     function getPriceInfo($item){
+        //some comments
 
         if(isset($item['promotionID'])){
             $itemPromotionC = new ItemPromotionsController();
