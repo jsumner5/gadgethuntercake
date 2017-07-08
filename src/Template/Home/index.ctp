@@ -141,7 +141,7 @@ echo $this->Html->script(['googleAnalytics', 'onLoad']);
                         <?= $this->Paginator->next('<i class="fa fa-arrow-right fa-2x" style="color:black;"> </i>', ['escape' => false]); ?>
 
                     </ul>
-                    <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} items(s) of {{count}}')]) ?></p>
+                    <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} items of {{count}}')]) ?></p>
                 </div>
             <!-- table wrapper-->
         </div>
