@@ -42,3 +42,4 @@
 *.eot binary
 \config\app.php merge=ours
 /config/app.php merge=ours
+config/app.php merge=ours
