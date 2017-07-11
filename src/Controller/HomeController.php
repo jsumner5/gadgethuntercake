@@ -29,9 +29,12 @@ class HomeController extends AppController
         ];
         $itemsC = new ItemsController();
         $items = $this->paginate($itemsC->Items,$options);
+        $itemss = $items->toList();
 
-        foreach($items as $item){
-            if(isset($item['promotionID'])){
+        foreach($itemss as $item){
+
+
+            if($itemsC->getItemPromotion($item['id'])){
                 $item['itemPromotion'] = $itemsC->getItemPromotion($item['id']);
             }
         }

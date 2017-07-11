@@ -134,7 +134,7 @@ class ItemsController extends AppController
     }
     function getPriceInfo($item){
 
-        if(isset($item['promotionID'])){
+        if(isset($item['itemPromotion'])){
             $itemPromotionC = new ItemPromotionsController();
 
             $itemPromo = $itemPromotionC->ItemPromotions->find('all')
