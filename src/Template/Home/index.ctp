@@ -55,7 +55,14 @@ echo $this->Html->script(['googleAnalytics', 'onLoad']);
                         <input type="text" style="max-width:200px; margin: auto" placeholder="Your Email" name="email" required>
                         <br><br>
 
-                        <p>By joining our deals list you agree to our <a href="privacy/privacypolicy.htm">Terms & Privacy</a>.</p>
+                        <p>By joining our deals list you agree to our
+                            <?=$this->Html->link(
+                                'Terms & Privacy',
+                                '/pages/privacy'
+                            ); ?>.
+                        </p>
+
+
 
                         <div class="clearfix">
                             <button type="button" onclick="document.getElementById('newsLetterModal').style.display='none'" class="cancelbtn">I don't like deals</button>
@@ -65,8 +72,6 @@ echo $this->Html->script(['googleAnalytics', 'onLoad']);
                 </form>
             </div>
 
-            <!--title/slogan/header-->
-<!--            <h2>Top Tech Deals Out Right Now</h2>-->
 
             <!--display table of items-->
             <div class="tableWrapper">
@@ -101,22 +106,17 @@ echo $this->Html->script(['googleAnalytics', 'onLoad']);
 
                                     <?php
                                     $itemC = new \App\Controller\ItemsController();
+
                                     #item title
                                     echo('<tr style="border-bottom: none;"><td class="">'.$itemC->trimTitle($item['title']).'</td></tr>');
 
                                     # price options
-                                    if($item['price'] < ($item['normal_price'] -1 )):
-                                        echo('<tr style="border-bottom: none;"><td class="">'.'From $<s>'.$item['normal_price'].'</s> to $'.$item['price'].'</td></tr>');
-                                    else:
-                                       echo('<tr style="border-bottom: none;"><td class="">$'.$item['price'].'</td></tr>');
-                                    endif ?>
-
-                                    <?php
-                                    #discount code
-                                    if ($item['code'] != null):
-                                    echo ('<tr style="border-bottom: none;"><td class="">CODE:</td></tr>');
-                                    endif;
+                                    echo($itemC->getPriceInfo($item));
                                     ?>
+
+
+
+
 
 
                                 </table>

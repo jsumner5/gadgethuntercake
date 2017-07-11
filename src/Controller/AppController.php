@@ -81,4 +81,11 @@ class AppController extends Controller
         $this->viewBuilder()->layout('base');
 
     }
+
+    public function logout()
+    {
+        return $this->redirect($this->Auth->logout());
+    }
+
+
 }

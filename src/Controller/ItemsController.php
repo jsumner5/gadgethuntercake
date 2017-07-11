@@ -27,6 +27,7 @@ class ItemsController extends AppController
         ];
 
         $items = $this->paginate($this->Items,$options);
+
         $this->set(compact('items'));
         $this->set('_serialize', ['items']);
     }
@@ -133,7 +134,6 @@ class ItemsController extends AppController
         return $promo;
     }
     function getPriceInfo($item){
-        //some c
 
         if(isset($item['promotionID'])){
             $itemPromotionC = new ItemPromotionsController();

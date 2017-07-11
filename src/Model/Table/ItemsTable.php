@@ -33,6 +33,8 @@ class ItemsTable extends Table
         $this->table('items');
         $this->displayField('title');
         $this->primaryKey('id');
+        //this has one itempromotion for cascade deletes
+        //$this->hasOne()
     }
 
     /**
