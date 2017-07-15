@@ -21,7 +21,7 @@ class HomeController extends AppController
     public function index()
     {
         $options = [
-            'limit' => 12,
+            'limit' => 20,
             'order' => [
                 'id' => 'desc'
             ]
