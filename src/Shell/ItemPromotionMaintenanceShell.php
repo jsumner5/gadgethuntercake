@@ -16,8 +16,9 @@ class ItemPromotionMaintenanceShell extends Shell
 {
     public function main()
     {
-        include_once ("/../Controller/ItemsController.php");
-        include_once ("/../Controller/ItemPromotionsController.php");
+        $COMPONENTPATH = realpath($_SERVER["DOCUMENT_ROOT"]);
+        include "$COMPONENTPATH/src/Controller/ItemsController.php";
+        include "$COMPONENTPATH/src/Controller/ItemPromotionsController.php";
 
         $itemPromosC = new ItemPromotionsController();
         $itemsC = new ItemsController();
