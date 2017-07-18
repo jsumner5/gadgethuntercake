@@ -170,6 +170,24 @@ gapi.analytics.ready(function() {
         }
     });
 
+    var sessionsByHourOfDay = new gapi.analytics.googleCharts.DataChart({
+        query: {
+            metrics: 'ga:sessions',
+            dimensions: 'ga:hour',
+            'start-date': '30daysAgo',
+            'end-date': 'today',
+        },
+        chart: {
+            container: 'sessionsByHourOfDay',
+            type: 'COLUMN',
+            options: {
+                width: '100%',
+                pieHole: 4/9,
+                title: 'Sessions by hour of day(Last 30 days)',
+            }
+        }
+    });
+
     // Step 6: Hook up the components to work together.
 
     gapi.analytics.auth.on('success', function(response) {
@@ -189,6 +207,7 @@ gapi.analytics.ready(function() {
         userNewVsReturningToday.set(newIds).execute();
         userNewVsReturningYesterday.set(newIds).execute();
         userSources.set(newIds).execute();
+        sessionsByHourOfDay.set(newIds).execute();
 
     });
 });

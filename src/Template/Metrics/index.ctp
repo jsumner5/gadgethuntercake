@@ -79,6 +79,8 @@
     <section id="usersByDayOfWeekContainer"></section>
     <section id="topOperatingSystemsContainer"></section>
     <section id="sessionsTodayContainer"></section>
+    <section id="sessionsByHourOfDay"></section>
+
 
 
     <section id="userNewVsReturningYesterdayContainer"></section>
