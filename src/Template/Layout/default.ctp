@@ -92,7 +92,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             ) ?>
             <ul class="right menu-container">
                 <li><a onclick="displayModal()" class="text-center " style="line-height: 1.5em;padding-top: 1em;"><i class="fa fa-envelope-o fa-3x"></i></a target="_blank" class="text-center " style="line-height: 1.5em;padding-top: 1em;"></li>
-                <li><a href="home/setFlash/New blog coming soon!" class="text-center med-text" style="line-height: 1.5em;padding-top: 1.2em;" onclick=""> Blog</a></li>
+                <li><a href="blog" class="text-center med-text" style="line-height: 1.5em;padding-top: 1.2em;" onclick=""> Blog</a></li>
                 <li><a href="home/setFlash/Hey there!" class="text-center med-text" style="line-height: 1.5em;padding-top: 1.2em;">About</a></li>
             </ul>
         </div>

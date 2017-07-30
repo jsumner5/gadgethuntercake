@@ -17,17 +17,18 @@ echo $this->Html->script(['googleAnalytics', 'onLoad']);
     <ul class="side-nav">
         <li class="heading text-center text-black">Our Affiliates</li>
         <li>
-            <div class="side-block">
-                <a target="_blank" href="https://www.amazon.com/gp/student/signup/info/?ref_=assoc_tag_ph_1402130811706&_encoding=UTF8&camp=1789&creative=9325&linkCode=pf4&tag=gadgethunter2-20&linkId=22006f1de95e8e175eee975730108172">
-                    <img src="webroot/img/amazonlogo.png"/>
-                </a>
-            </div>
-        </li>
-        <li>
 
             <div class="side-block">
                 <a href="http://www.jdoqocy.com/click-8307307-11495095" target="_blank">
-                    <img src="webroot/img/egg.png"/>
+                    <?php echo $this->Html->image('egg.png'); ?>
+                </a>
+            </div>
+        </li>
+
+        <li>
+            <div class="side-block">
+                <a target="_blank" href="https://www.amazon.com/gp/student/signup/info/?ref_=assoc_tag_ph_1402130811706&_encoding=UTF8&camp=1789&creative=9325&linkCode=pf4&tag=gadgethunter2-20&linkId=22006f1de95e8e175eee975730108172">
+                    <?php echo $this->Html->image('amazonlogo.png'); ?>
                 </a>
             </div>
         </li>

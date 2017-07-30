@@ -22,6 +22,7 @@ use Cake\Core\Plugin;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
 use Cake\Routing\Route\DashedRoute;
+use Cake\Datasource\ConnectionManager;
 
 /**
  * The default class to use for all routes
@@ -44,6 +45,8 @@ use Cake\Routing\Route\DashedRoute;
 Router::defaultRouteClass(DashedRoute::class);
 
 Router::scope('/', function (RouteBuilder $routes) {
+    ConnectionManager::alias('default', 'test');
+
     /**
      * Here, we are connecting '/' (base path) to a controller called 'Pages',
      * its action called 'display', and we pass a param to select the view file
@@ -51,10 +54,14 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->connect('/', ['controller' => 'Home', 'action' => 'index']);
 
+
+
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
+
+   // $routes->connect('/Blog/*', ['controller' => 'Pages', 'action' => 'display']);
 
     /**
      * Connect catchall routes for all controllers.
@@ -72,6 +79,8 @@ Router::scope('/', function (RouteBuilder $routes) {
      * You can remove these routes once you've connected the
      * routes you want in your application.
      */
+    //Plugin::load( array( 'Blog' => array( 'routes' => True ) ) );
+
     $routes->fallbacks(DashedRoute::class);
 });
 
@@ -79,4 +88,47 @@ Router::scope('/', function (RouteBuilder $routes) {
  * Load all plugin routes.  See the Plugin documentation on
  * how to customize the loading of plugin routes.
  */
-Plugin::routes();
+
+
+Router::prefix('Blog', function ($routes) {
+    $routes->connect('/', ['controller' => 'Pages', 'action' => 'home']);
+
+    $routes->connect('/*', ['controller' => 'Articles', 'action' => 'view']);
+
+    $routes->connect('/blog/*', ['controller' => 'Articles', 'action' => 'index']);
+
+    $routes->connect('/rss', ['controller' => 'Articles', 'action' => 'rss']);
+
+    $routes->connect('/author/*', ['controller' => 'Author', 'action' => 'index']);
+
+    $routes->connect('/category/*', ['controller' => 'Categories', 'action' => 'index']);
+
+    $routes->connect('/search', ['controller' => 'Search', 'action' => 'index']);
+
+    $routes->connect('/users/login', ['controller' => 'Users', 'action' => 'login']);
+    $routes->connect('/users/logout', ['controller' => 'Users', 'action' => 'logout']);
+
+    $routes->connect('/admin', ['controller' => 'Admin', 'action' => 'index']);
+
+    $routes->connect('/install', ['controller' => 'Install', 'action' => 'index']);
+
+    $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
+});
+
+Router::prefix('blog/admin', function ($routes) {
+    // All routes here will be prefixed with `/admin`
+    // And have the prefix => admin route element added
+    $routes->redirect('/users/login', BASE_URL.'/users/login', ['status' => 302]);
+    $routes->redirect('/users/logout', BASE_URL.'/users/logout', ['status' => 302]);
+    $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
+
+    //Post type fallback for older PHP versions
+    $routes->connect('/posttype', ['controller' => 'PostType', 'action' => 'index']);
+    $routes->connect('/posttype/add', ['controller' => 'PostType', 'action' => 'add']);
+    $routes->connect('/posttype/edit/*', ['controller' => 'PostType', 'action' => 'edit']);
+    $routes->connect('/posttype/delete/*', ['controller' => 'PostType', 'action' => 'delete']);
+
+    $routes->fallbacks(DashedRoute::class);
+});
+//Plugin::load( array( 'Blog' => array( 'routes' => True ) ) );
+//Plugin::routes();

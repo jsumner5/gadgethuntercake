@@ -156,6 +156,10 @@ p{
 
 
 @media only screen and (max-width: 1070px) {
+	.page_container{
+		width:105% !important;
+	}
+
 	#actions-sidebar{
 		display:none;
 	}

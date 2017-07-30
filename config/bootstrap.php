@@ -214,6 +214,9 @@ Type::build('timestamp')
  * Plugin::load('Migrations'); //Loads a single plugin named Migrations
  *
  */
+//Plugin::loadAll(); // Loads all plugins at once
+Plugin::load('Blog', ['routes' => true, 'autoload' => true]);
+//Plugin::routes();
 
 /*
  * Only try to load DebugKit in development mode
@@ -222,3 +225,5 @@ Type::build('timestamp')
 if (Configure::read('debug')) {
     Plugin::load('DebugKit', ['bootstrap' => true]);
 }
+
+include("cakeblog-config.php");

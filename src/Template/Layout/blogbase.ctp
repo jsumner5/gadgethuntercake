@@ -1,0 +1,144 @@
+<?php
+/**
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
+ * @since         0.10.0
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ */
+use Cake\Controller\Component\FlashComponent;
+
+$cakeDescription = 'CakePHP: the rapid development php framework';
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <?= $this->Html->charset() ?>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <?= $this->fetch('title') ?>
+    </title>
+    <?= $this->Html->meta('icon') ?>
+
+    <?= $this->Html->css('base.css') ?>
+    <?= $this->Html->css('cake.css') ?>
+    <?= $this->Html->css(['style.css','/font-awesome/css/font-awesome.min.css', 'newsLetter.css']) ?>
+    <?= $this->Html->script('https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js') ?>
+
+    <!-- Bootstrap -->
+    <?= $this->Html->css('/resources/bootstrap/css/bootstrap.min.css'); ?>
+    <!-- Custom -->
+    <?= $this->Html->css('/css/cakeblog.css'); ?>
+    <!-- Jquery -->
+    <?= $this->Html->script('/resources/jquery/jquery.js'); ?>
+    <!--Jquery-UI-->
+    <?= $this->Html->script('/resources/jquery-ui/jquery-ui.min.js'); ?>
+    <?= $this->Html->css('/resources/jquery-ui/jquery-ui.css'); ?>
+
+    <?= $this->fetch('meta') ?>
+    <?= $this->fetch('css') ?>
+    <?= $this->fetch('script') ?>
+
+
+</head>
+
+<style>
+    div > .menu-container > li{
+        height: 4.5em;
+        width: 33.33%;
+    }
+    div > ul {
+
+    }
+    div > ul > li > a{
+        height: 100%;
+    }
+    .med-text{
+        font-size: 13pt !important;
+    }
+    li > a > i{
+        color: #F4F4F4;
+    }
+    .menu-container{
+        width: 25% !important;
+    }
+    .logo{
+        padding-left:1em;
+        height: 4.5em;
+
+    }
+</style>
+
+
+
+
+<body>
+
+
+
+
+
+<nav class="top-bar expanded" data-topbar role="navigation" style="height: 4.5em; background-color:white;">
+
+    <div class="top-bar-section">
+<!-- refer to default.ctp for the image here -->
+        <a href="<?php echo $this->Url->build(['controller' => 'pages', 'action' => 'display']) ?>">
+            <img src="<?php echo $this->Url->image('gadgethunterlogo.jpg'); ?>"class="logo"/>
+        </a>
+
+        <ul class="right menu-container">
+            <li><a onclick="displayModal()" class="text-center " style="line-height: 1.5em;padding-top: 1em;"><i class="fa fa-envelope-o fa-3x"></i></a target="_blank" class="text-center " style="line-height: 1.5em;padding-top: 1em;"></li>
+            <li><a href="<?php echo $this->Url->build(['controller' => 'pages', 'action' => 'home']) ?>" class="text-center med-text" style="line-height: 1.5em;padding-top: 1.2em;" onclick=""> Blog</a></li>
+            <li><a href="home/setFlash/Hey there!" class="text-center med-text" style="line-height: 1.5em;padding-top: 1.2em;">About</a></li>
+        </ul>
+    </div>
+</nav>
+
+<?= $this->Flash->render() ?>
+<div class="container clearfix" style="width:100%">
+
+    <div class="page_container" style="width:74%; padding:1em; float:left;">
+        <?= $this->fetch('content')?>
+    </div>
+
+    <nav class="large-3 medium-4 columns" id="actions-sidebar" style="float: right;">
+        <ul class="side-nav">
+            <li class="heading text-center text-black">Our Affiliates</li>
+
+            <li>
+
+                <div class="side-block">
+                    <a href="http://www.jdoqocy.com/click-8307307-11495095" target="_blank">
+                        <?php echo $this->Html->image('egg.png'); ?>
+                    </a>
+                </div>
+            </li>
+
+            <li>
+                <div class="side-block">
+                    <a target="_blank" href="https://www.amazon.com/gp/student/signup/info/?ref_=assoc_tag_ph_1402130811706&_encoding=UTF8&camp=1789&creative=9325&linkCode=pf4&tag=gadgethunter2-20&linkId=22006f1de95e8e175eee975730108172">
+                         <?php echo $this->Html->image('amazonlogo.png'); ?>
+                    </a>
+                </div>
+            </li>
+<!-- I can add side bar items in here dynamically -->
+        </ul>
+    </nav>
+
+</div>
+
+
+<footer>
+
+
+
+
+</footer>
+</body>
+</html>

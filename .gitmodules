@@ -1,0 +1,3 @@
+[submodule "app/Plugin/Blog"]
+	path = app/Plugin/Blog
+	url = git://github.com/neilcrookes/CakePHP-Blog-Plugin.git
