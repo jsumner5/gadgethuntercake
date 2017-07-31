@@ -1,6 +1,6 @@
 <?php
 #GENERAL SETTINGS
-define('BASE_URL', 'http://localhost/gadgethunter/blog');
+define('BASE_URL', 'http://gadgethunter.co');
 define('SITE_TITLE', 'CakeBlog');
 define('SITE_DESCRIPTION', 'A blogging software written in CakePHP.');
 define('SITE_KEYWORDS', 'cakeblog, cakephp, georgewhitcher');
