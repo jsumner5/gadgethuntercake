@@ -215,7 +215,6 @@ Type::build('timestamp')
  *
  */
 //Plugin::loadAll(); // Loads all plugins at once
-Plugin::load('Blog', ['routes' => true, 'autoload' => true]);
 //Plugin::routes();
 
 /*

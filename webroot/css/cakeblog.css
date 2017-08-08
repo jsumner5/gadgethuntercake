@@ -53,10 +53,11 @@ body {
     margin-bottom: 15px;
 }
 .post-details div {
-    float: left;
+    /*float: left;*/
     margin: 0px 10px 0px 0px;
     font-size: 11px;
     text-align: left;
+    display: inline-block;
 }
 @media (max-width:768px) {
     .post-details div {

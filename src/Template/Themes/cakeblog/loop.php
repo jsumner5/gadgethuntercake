@@ -4,11 +4,14 @@ if($articles->count() > 0) {
         echo '<div class="post">';
         echo '<article>';
         if (!empty($article->featured)) {
-            echo '<a href="'.BASE_URL.'/'.$article->slug.'"><img class="featured img-responsive" src="'.$article->featured.'" title="'.$article->title.'" alt="'.$article->title.'"></a>';
+            echo '<a href="'.BASE_URL.'/'.$article->slug.'"><img class="featured img-responsive" src="'.$article->featured.'"
+             title="'.$article->title.'" alt="'.$article->title.' "
+             style="max-height: 350px; margin:auto;"></a>';
         }
         echo '<h2 class="page-header"><a href="'.BASE_URL.'/'.$article->slug.'">'.$article->title.'</a></h2>';
 
-        echo '<div class="post-details" style="margin-bottom:1em;">';
+        echo '<div class="post-details" style="margin-bottom:1em; text-align:center 
+             !important; float:none !important;">';
         echo '<div><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Posted in ';
         $cat_count = 0;
         foreach($article->categories as $category) {

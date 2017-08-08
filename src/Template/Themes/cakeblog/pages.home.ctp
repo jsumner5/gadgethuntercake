@@ -9,7 +9,7 @@ include('loop.carousel.php');
 ?>
 
 <div class="row" style="margin-bottom:2em;">
-    <div class="col-sm-8">
+    <div class="feed-container" style="margin:auto; text-align: center;">
         <?php include('loop.php'); ?>
     </div>
 

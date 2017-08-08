@@ -1,11 +1,21 @@
 <?php echo $this->Html->css('base');?>
 <?php
+// echo the metadata for the blog
+
+
+
+echo '<meta name="description" content="'.$article->metadescription.'" >';
+
+echo '<meta name="keywords" content="'.$article->metakeywords.'" >';
+
 if (!empty($article->featured)) {
-    echo '<img class="featured img-responsive" src="'.$article->featured.'" title="'.$article->title.'" alt="'.$article->title.'">';
+    echo '<img class="featured img-responsive" src="'.$article->featured.'" title="'.$article->title.'" alt="'.$article->title.'"
+    style="max-height: 600px; margin:auto;">';
 }
 echo '<h1 class="page-header-top">'.$article->title.'</h1>';
 
-echo '<div class="post-details">';
+echo '<div class="post-details"  style="margin-bottom:1em; text-align:center 
+             !important; float:none !important;">';
 echo '<div><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Posted in ';
 $cat_count = 0;
 foreach($article->categories as $category) {

@@ -103,7 +103,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <?= $this->Flash->render() ?>
 <div class="container clearfix" style="width:100%">
 
-    <div class="page_container" style="width:74%; padding:1em; float:left;">
+    <div class="page_container" style="width:74%; padding:1em; float:left; text-align: center;">
         <?= $this->fetch('content')?>
     </div>
 

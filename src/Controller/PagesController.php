@@ -59,6 +59,8 @@ class PagesController extends AppController
             $subpage = $path[1];
         }
         $this->set(compact('page', 'subpage'));
+        $this->setAnnouncements();
+
 
         try {
             $this->render(implode('/', $path));
@@ -68,6 +70,12 @@ class PagesController extends AppController
             }
             throw new NotFoundException();
         }
+    }
+
+    function setAnnouncements(){
+        $announcementsC = new AnnouncementsController();
+        $announcements = $announcementsC->Announcements->find('All')->select(['body'])->toArray();
+        $this->set('announcements', $announcements);
     }
 
 }

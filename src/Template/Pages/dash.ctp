@@ -1,5 +1,6 @@
 <?php
-
+$pagesC = new \App\Controller\PagesController();
+$pagesC->setAnnouncements();
 $this->assign('title','Dashboard');
 ?>
 <html>
@@ -12,22 +13,33 @@ $this->assign('title','Dashboard');
 </div>
 
 <div class="items index large-9 medium-8 columns content">
-    <h3>Useful Links</h3>
     <?php
-     $list = [
+    $list = [
 
-                 '<a href="http://www.hootsuite.com/dashboard" target="_blank"> Hoot Suite</a>',
-                 '<a href="https://affiliate-program.amazon.com/" target="_blank"> Amazon Associates</a>',
-                 '<a href="http://www.instagram.com/gadgethunter.co" target="_blank"> Instagram</a>',
+    '<a href="http://www.hootsuite.com/dashboard" target="_blank"> Hoot Suite</a>',
+    '<a href="https://affiliate-program.amazon.com/" target="_blank"> Amazon Associates</a>',
+    '<a href="http://www.instagram.com/gadgethunter.co" target="_blank"> Instagram</a>',
 
-     ];
+    ];?>
 
-    echo $this->Html->nestedList($list);
+    <!--announcements-->
+    <div style="margin-bottom: 3em;">
+        <h3>Announcements</h3>
+        <?php foreach($announcements as $announcement){
+            echo '<li>'.$announcement['body'].'</li>';
+        }
+        ?>
+
+        <?= $this->Html->link('New Announcement',['controller' => 'announcements', 'action' => 'add']) ?>
+    </div>
+
+<!--    useful links-->
+    <div>
+    <h3>Useful Links</h3>
+
+    <?= $this->Html->nestedList($list);?>
+    </div>
 
 
-
-
-
-    ?>
 </div>
 </html>
