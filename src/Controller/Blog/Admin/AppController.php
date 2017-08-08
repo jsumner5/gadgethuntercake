@@ -25,5 +25,12 @@ class AppController extends Controller {
         parent::beforeFilter($event);
         //Deny all admin pages if not logged in
         $this->Auth->deny();
+        $current_user = $this->Auth->user();
+        // to fix problems with being logged into both the
+        //blog admin and the items manager
+        if(!isset($current_user['full_name'])){
+            return $this->redirect($this->Auth->logout());
+        }
+
     }
 }
