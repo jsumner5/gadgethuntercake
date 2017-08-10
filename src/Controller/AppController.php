@@ -79,7 +79,7 @@ class AppController extends Controller
             $this->set('_serialize', true);
         }
         $this->viewBuilder()->layout('base');
-        $current_user = $this->Auth->user();
+        $current_user = $this->Auth->user;
         // to fix problems with being logged into both the
         //blog admin and the items manager
         if(isset($current_user['full_name'])){
