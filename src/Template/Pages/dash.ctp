@@ -16,11 +16,12 @@ $this->assign('title','Dashboard');
     <?php
     $list = [
 
-    '<a href="http://www.hootsuite.com/dashboard" target="_blank"> Hoot Suite</a>',
-    '<a href="https://affiliate-program.amazon.com/" target="_blank"> Amazon Associates</a>',
-    '<a href="http://www.instagram.com/gadgethunter.co" target="_blank"> Instagram</a>',
+            '<a href="'.BASE_URL.'/admin" target="_blank">Post on Blog</a>',
+            '<a href="https://buffer.com/app/" target="_blank">Buffer</a>',
+            '<a href="https://affiliate-program.amazon.com/" target="_blank"> Amazon Associates</a>',
+            '<a href="http://www.instagram.com/gadgethunter.co" target="_blank"> Instagram</a>',
 
-    ];?>
+            ];?>
 
     <!--announcements-->
     <div style="margin-bottom: 3em;">
