@@ -1,12 +1,11 @@
 <?php echo $this->Html->css('base');?>
 <?php
+
 // echo the metadata for the blog
 
+echo '<meta name="description" content="'.$article->title.', '.$article->metadescription.'" >';
 
-
-echo '<meta name="description" content="'.$article->metadescription.'" >';
-
-echo '<meta name="keywords" content="'.$article->metakeywords.'" >';
+echo '<meta name="keywords" content="'.$article->title.', '.$article->metakeywords.'" >';
 
 if (!empty($article->featured)) {
     echo '<img class="featured img-responsive" src="'.$article->featured.'" title="'.$article->title.'" alt="'.$article->title.'"
